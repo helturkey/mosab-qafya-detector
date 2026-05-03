@@ -1,0 +1,12 @@
+[
+  {"word":"كتابُهُ","expected":{"rawi":"ب","radf":"ا","wasl":"ه"}},
+  {"word":"حسابُهُ","expected":{"rawi":"ب","radf":"ا","wasl":"ه"}},
+  {"word":"ينساهُ","expected":{"rawi":"ه","radf":"ا","wasl":null}},
+  {"word":"يدعوهُ","expected":{"rawi":"ه","radf":"و","wasl":null}},
+  {"word":"وجأوا","expected":{"rawi":"ء","wasl":"و","khurooj":"ا"}},
+  {"word":"المدى","expected":{"rawi":"ى","wasl":null}},
+  {"word":"الصدى","expected":{"rawi":"ى","wasl":null}},
+  {"word":"القلبْ","expected":{"rawi":"ب"}},
+  {"word":"الدربْ","expected":{"rawi":"ب"}},
+  {"word":"المطالبُ","expected":{"rawi":"ب","taasis":"ا","dakhiil":"ل"}}
+]

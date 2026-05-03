@@ -1,0 +1,65 @@
+{
+  "name": "helturkey/mosab-qafya-detector",
+  "description": "PHP-first classical Arabic qafya detector with Laravel support, scholarly response models, fixtures, and tests.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "arabic",
+    "qafya",
+    "rhyme",
+    "poetry",
+    "arud",
+    "laravel"
+  ],
+  "authors": [
+    {
+      "name": "Hussein Srour",
+      "homepage": "https://github.com/helturkey"
+    }
+  ],
+  "require": {
+    "php": "^8.4"
+  },
+  "require-dev": {
+    "pestphp/pest": "^3.0|^4.0",
+    "phpstan/phpstan": "^2.1",
+    "laravel/pint": "^1.18",
+    "illuminate/support": "^11.0|^12.0|^13.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mosab\\QafyaDetector\\": "src/"
+    },
+    "files": [
+      "src/Support/polyfills.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mosab\\QafyaDetector\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "pest",
+    "analyse": "phpstan analyse src tests --memory-limit=1G",
+    "lint": "pint --test",
+    "fix": "pint"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Mosab\\QafyaDetector\\Laravel\\MosabQafyaDetectorServiceProvider"
+      ],
+      "aliases": {
+        "QafyaDetector": "Mosab\\QafyaDetector\\Laravel\\Facades\\QafyaDetector"
+      }
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}

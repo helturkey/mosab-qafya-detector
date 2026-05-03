@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">Mosab Qafya Detector benchmark result</title>
+  <desc id="desc">Benchmark showing 5000 analyzed poems in 205.506 ms, average 41.10 microseconds per poem, throughput 24330.16 poems per second.</desc>
+  <rect width="920" height="520" rx="34" fill="#fffaf2"/>
+  <rect x="70" y="56" width="780" height="408" rx="28" fill="#ffffff" stroke="#eadfcd" stroke-width="2"/>
+  <text x="110" y="116" font-family="monospace" font-size="30" font-weight="700" fill="#191715">php benchmarks/basic.php</text>
+  <line x1="110" y1="145" x2="810" y2="145" stroke="#e6dccb" stroke-width="2"/>
+  <g font-family="monospace" font-size="28" fill="#2b2926">
+    <text x="110" y="200">Fixtures:</text><text x="350" y="200" font-weight="700">50 poems</text>
+    <text x="110" y="246">Iterations:</text><text x="350" y="246" font-weight="700">100</text>
+    <text x="110" y="292">Analyzed:</text><text x="350" y="292" font-weight="700">5000 poems</text>
+    <text x="110" y="338">Total time:</text><text x="350" y="338" font-weight="700">205.506 ms</text>
+    <text x="110" y="384">Average:</text><text x="350" y="384" font-weight="700">41.10 µs/poem</text>
+    <text x="110" y="430">Throughput:</text><text x="350" y="430" font-weight="700">24330.16 poems/sec</text>
+  </g>
+</svg>

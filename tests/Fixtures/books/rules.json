@@ -1,0 +1,6 @@
+[
+  {"id":"rule-boundary","source":"ميزان الذهب / الخليل","claim":"القافية من آخر ساكن إلى أقرب ساكن يليه مع المتحرك الذي قبله","covered_by":["QafyaSegmentExtractorTest"]},
+  {"id":"rule-components","source":"كتب القافية","claim":"حروف القافية ستة: الروي والوصل والخروج والردف والتأسيس والدخيل","covered_by":["WordDetectionTest","ResponseStructureTest"]},
+  {"id":"rule-motions","source":"ميزان الذهب","claim":"حركات القافية: المجرى والنفاذ والإشباع والحذو والرس والتوجيه","covered_by":["ClassifiersTest"]},
+  {"id":"rule-defects","source":"ميزان الذهب","claim":"عيوب القافية تشمل الإقواء والإيطاء والسناد","covered_by":["DefectDetectorTest"]}
+]
