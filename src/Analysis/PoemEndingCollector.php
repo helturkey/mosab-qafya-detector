@@ -8,12 +8,7 @@ use Mosab\QafyaDetector\Support\QafyaOptions;
 use Mosab\QafyaDetector\Text\VerseSplitter;
 use Mosab\QafyaDetector\WordQafyaDetector;
 
-/**
- * Converts a poem into analyzed sadr/ajz endings.
- *
- * This is the detection orchestration layer. It keeps text splitting and
- * word-level qafya detection outside the poem arbitration class.
- */
+/** Converts a poem into analyzed sadr/ajz endings. */
 final class PoemEndingCollector
 {
     public function __construct(
@@ -23,14 +18,12 @@ final class PoemEndingCollector
 
     /**
      * @param  string|array<int, string>  $poem
-     * @return array{lines: list<string>, pairs: list<array{index: int, sadr: string, ajz: string}>, endings: list<array<string, mixed>>}
+     * @return array{lines: list<string>, pairs: list<array{index: int, sadr: string, ajz: string}>, endings: list<array<string, mixed>>, unpaired_line_count: int}
      */
     public function collect(string|array $poem, QafyaOptions $options): array
     {
         $lines = $this->splitter->split($poem);
         $pairs = $this->splitter->pairHemistichs($lines);
-
-        /** @var list<array<string, mixed>> $endings */
         $endings = [];
 
         foreach ($pairs as $pair) {
@@ -55,6 +48,7 @@ final class PoemEndingCollector
             'lines' => $lines,
             'pairs' => $pairs,
             'endings' => $endings,
+            'unpaired_line_count' => count($lines) % 2,
         ];
     }
 }

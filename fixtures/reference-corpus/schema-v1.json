@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://helturkey.github.io/mosab-qafya-detector/reference-corpus-v1.schema.json",
+  "title": "Mosab Qafya Reference Corpus v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "metadata",
+    "records"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "input",
+          "split",
+          "source",
+          "expected",
+          "review"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "ending",
+              "poem"
+            ]
+          },
+          "input": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mode": {
+            "enum": [
+              "auto",
+              "heuristic",
+              "scholarly"
+            ]
+          },
+          "split": {
+            "enum": [
+              "train",
+              "validation",
+              "test",
+              "holdout"
+            ]
+          },
+          "source": {
+            "type": "object",
+            "required": [
+              "type",
+              "reference",
+              "locator"
+            ],
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "reference": {
+                "type": "string"
+              },
+              "locator": {
+                "type": "string"
+              }
+            }
+          },
+          "expected": {
+            "type": "object"
+          },
+          "review": {
+            "type": "object",
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "unreviewed",
+                  "provisional",
+                  "verified",
+                  "rejected"
+                ]
+              },
+              "reviewer": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "reviewed_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "rationale": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

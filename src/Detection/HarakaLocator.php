@@ -4,28 +4,26 @@ declare(strict_types=1);
 
 namespace Mosab\QafyaDetector\Detection;
 
-use Mosab\QafyaDetector\Support\ArabicLetters;
 use Mosab\QafyaDetector\Support\ArabicText;
+use Mosab\QafyaDetector\Text\PhoneticText;
 
-/**
- * Finds harakat attached to Arabic letters in the original ending.
- */
+/** Finds harakat through the shared source-mapped phonetic representation. */
 final class HarakaLocator
 {
-    /**
-     * @return array{mark: ?string, name: ?string, class: ?string}
-     */
+    /** @return array{mark: ?string, name: ?string, class: ?string} */
     public function lastForLetter(string $text, ?string $letter): array
     {
         if ($letter === null || $letter === '') {
             return $this->empty();
         }
 
-        $chars = ArabicText::chars($text);
+        $phoneticText = new PhoneticText($text);
+        $chars = $phoneticText->normalizedLetters();
+        $target = ArabicText::normalizeForRawi($letter);
+
         for ($i = count($chars) - 1; $i >= 0; $i--) {
-            $current = ArabicText::normalizeForRawi($chars[$i]);
-            if ($current === $letter) {
-                return $this->attachedAt($chars, $i);
+            if (ArabicText::normalizeForRawi($chars[$i]) === $target) {
+                return $phoneticText->harakaAtLetterIndex($i);
             }
         }
 
@@ -33,36 +31,18 @@ final class HarakaLocator
     }
 
     /**
-     * @param  list<string>  $chars
+     * Look up the diacritics attached to a specific Arabic-letter ordinal.
+     * The ordinal uses the normalized, tashkeel-free form consumed by the
+     * detector, so repeated letters cannot silently select the wrong haraka.
+     *
      * @return array{mark: ?string, name: ?string, class: ?string}
      */
-    private function attachedAt(array $chars, int $index): array
+    public function atLetterIndex(string $text, int $letterIndex): array
     {
-        /** @var list<string> $marks */
-        $marks = [];
-        for ($i = $index + 1; $i < count($chars); $i++) {
-            if (! ArabicLetters::isHaraka($chars[$i])) {
-                break;
-            }
-            $marks[] = $chars[$i];
-        }
-
-        foreach (array_reverse($marks) as $mark) {
-            if ($mark !== ArabicLetters::SHADDA) {
-                return [
-                    'mark' => $mark,
-                    'name' => ArabicLetters::harakaName($mark),
-                    'class' => ArabicLetters::harakaClass($mark),
-                ];
-            }
-        }
-
-        return $this->empty();
+        return (new PhoneticText($text))->harakaAtLetterIndex($letterIndex);
     }
 
-    /**
-     * @return array{mark: ?string, name: ?string, class: ?string}
-     */
+    /** @return array{mark: ?string, name: ?string, class: ?string} */
     private function empty(): array
     {
         return ['mark' => null, 'name' => null, 'class' => null];

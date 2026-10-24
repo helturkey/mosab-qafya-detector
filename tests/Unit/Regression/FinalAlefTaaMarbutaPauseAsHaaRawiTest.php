@@ -13,7 +13,7 @@ it('treats unvocalized taa marbuta after alef as haa rawi with alef radf', funct
         expect($result->rawi())->toBe('ه', "word={$word}")
             ->and($result->radf())->toBe('ا', "word={$word}")
             ->and($result->wasl())->toBeNull("word={$word}")
-            ->and($result->patternSurface())->toBe('اه', "word={$word}");
+            ->and($result->patternSurface())->toBe('اة', "word={$word}");
     }
 });
 
@@ -45,7 +45,7 @@ it('does not split paused taa marbuta after alef from explicit aah endings', fun
     expect($analysis->rawi())->toBe('ه')
         ->and($analysis->dominant)->not->toBeNull()
         ->and($analysis->dominant?->radf)->toBe('ا')
-        ->and($analysis->qafyaPattern())->toBe('اه')
+        ->and($analysis->qafyaPattern())->toBe('اة')
         ->and($analysis->hasMultipleQafyas())->toBeFalse();
 });
 

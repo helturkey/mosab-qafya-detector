@@ -6,6 +6,7 @@ namespace Mosab\QafyaDetector\Analysis;
 
 use Mosab\QafyaDetector\Classification\QafyaSignatureBuilder;
 use Mosab\QafyaDetector\Support\ArabicText;
+use Mosab\QafyaDetector\Support\QafyaSurfaceFormatter;
 
 /**
  * Builds the public dominant result for a poem-level rawi cluster.
@@ -191,6 +192,13 @@ final class PublicDominantQafyaNormalizer
 
         $signatures = $this->signatureBuilder->build($components, $motions);
         $surface = $this->publicPatternSurface($components);
+        $surface = QafyaSurfaceFormatter::preserveTaaMarbuta(
+            $surface,
+            $this->dominantSurfaceSourceWord($clusterResults, $result['input']['word'] ?? $result['input']['text'] ?? null),
+            $rawi,
+            $radf,
+            $wasl,
+        );
 
         $result['signatures'] = $signatures;
         $result['signatures']['visual'] = $surface;
@@ -267,9 +275,12 @@ final class PublicDominantQafyaNormalizer
         arsort($counts);
 
         $letter = array_key_first($counts);
-        $count = $letter !== null ? $counts[$letter] : 0;
+        if (! is_string($letter)) {
+            return null;
+        }
+        $count = $counts[$letter];
 
-        return $letter !== null && ($count / max(1, $total)) >= $threshold
+        return ($count / max(1, $total)) >= $threshold
             ? $letter
             : null;
     }
@@ -376,9 +387,12 @@ final class PublicDominantQafyaNormalizer
         arsort($counts);
 
         $value = array_key_first($counts);
-        $count = $value !== null ? $counts[$value] : 0;
+        if (! is_string($value)) {
+            return null;
+        }
+        $count = $counts[$value];
 
-        return $value !== null && ($count / max(1, $total)) >= $threshold
+        return ($count / max(1, $total)) >= $threshold
             ? $value
             : null;
     }
@@ -456,6 +470,35 @@ final class PublicDominantQafyaNormalizer
         return is_string($letter) && $letter !== '' ? $letter : null;
     }
 
+    /**
+     * Prefer the spelling actually written by the majority of endings in the
+     * dominant rawi cluster. Input can be a word or a complete hemistich.
+     *
+     * @param  list<array<string, mixed>>  $clusterResults
+     */
+    private function dominantSurfaceSourceWord(array $clusterResults, mixed $fallback): mixed
+    {
+        $taaMarbutaWords = [];
+        foreach ($clusterResults as $candidateResult) {
+            $input = is_array($candidateResult['input'] ?? null) ? $candidateResult['input'] : [];
+            $candidate = $input['word'] ?? $input['text'] ?? null;
+            if (! is_string($candidate) || $candidate === '') {
+                continue;
+            }
+
+            $lastWord = ArabicText::lastArabicWord($candidate, preserveTashkeel: true) ?? $candidate;
+            if (str_ends_with(ArabicText::normalizeForQafya($lastWord), 'ة')) {
+                $taaMarbutaWords[] = $lastWord;
+            }
+        }
+
+        if ($clusterResults !== [] && count($taaMarbutaWords) > count($clusterResults) / 2) {
+            return $taaMarbutaWords[0];
+        }
+
+        return $fallback;
+    }
+
     /** @param array<string, mixed> $result */
     private function rawiClusterSignature(array $result): ?string
     {
@@ -512,9 +555,12 @@ final class PublicDominantQafyaNormalizer
         arsort($counts);
 
         $surface = array_key_first($counts);
-        $count = $surface !== null ? $counts[$surface] : 0;
+        if (! is_string($surface)) {
+            return null;
+        }
+        $count = $counts[$surface];
 
-        return $surface !== null && ($count / max(1, $eligible)) >= $threshold
+        return ($count / max(1, $eligible)) >= $threshold
             ? $surface
             : null;
     }

@@ -9,6 +9,7 @@ use Mosab\QafyaDetector\Enums\QafyaCategory;
 use Mosab\QafyaDetector\Enums\QafyaComponent;
 use Mosab\QafyaDetector\Support\ArabicLetters;
 use Mosab\QafyaDetector\Support\ArabicText;
+use Mosab\QafyaDetector\Text\PhoneticText;
 
 /**
  * Detects the six qafya letters from a final word or ending.
@@ -27,7 +28,8 @@ final class ComponentDetector
     {
         $word = ArabicText::lastArabicWord($ending, preserveTashkeel: true) ?? $ending;
         $normalized = ArabicText::normalizeForQafya($word);
-        $chars = ArabicText::chars($normalized);
+        $phoneticText = new PhoneticText($word);
+        $chars = $phoneticText->normalizedLetters();
         /** @var list<array<string, mixed>> $trace */
         $trace = [];
         /** @var list<array<string, mixed>> $warnings */
@@ -98,7 +100,7 @@ final class ComponentDetector
                 'decision' => 'taa_marbuta_with_explicit_haraka_is_taa_rawi',
             ];
         } elseif (ArabicLetters::isHaa($final)) {
-            $haaContext = $this->resolveBareHaaContext($word, $chars, $last);
+            $haaContext = $this->resolveBareHaaContext($word, $chars, $last, $phoneticText);
             $rawiIndex = $haaContext['rawi_index'];
             $rawi = $rawiIndex >= 0 && isset($chars[$rawiIndex])
                 ? ArabicText::normalizeForRawi($chars[$rawiIndex])
@@ -237,8 +239,25 @@ final class ComponentDetector
             $surfacePattern = $this->hamzaSeatSurfacePattern($chars, $rawiIndex);
         }
 
-        $rawiHaraka = $this->harakaLocator->lastForLetter($word, $rawiSurface);
-        $waslHaraka = $this->harakaLocator->lastForLetter($word, $wasl);
+        // Use the exact component position, not the last matching glyph.
+        // A repeated letter can carry a different haraka elsewhere in the word.
+        $rawiHaraka = $phoneticText->harakaAtLetterIndex($rawiIndex);
+        $waslIndex = null;
+        if ($wasl !== null) {
+            for ($i = $rawiIndex + 1; $i < count($chars); $i++) {
+                $actual = $chars[$i];
+                $matches = ArabicText::normalizeForRawi($actual) === ArabicText::normalizeForRawi($wasl)
+                    || ($wasl === 'ا' && in_array($actual, ['آ', 'ى'], true))
+                    || ($wasl === 'ي' && $actual === 'ى');
+                if ($matches) {
+                    $waslIndex = $i;
+                    break;
+                }
+            }
+        }
+        $waslHaraka = $waslIndex !== null
+            ? $phoneticText->harakaAtLetterIndex($waslIndex)
+            : $this->harakaLocator->lastForLetter($word, $wasl);
         $motions = $this->motions($rawiHaraka, $waslHaraka, $radf, $taasis, $dakhiil, $wasl, $khurooj);
         $rawiEligibility = $this->eligibility->assess($rawi);
 
@@ -280,7 +299,13 @@ final class ComponentDetector
             'components' => $components,
             'motions' => $motions,
             'surface_pattern' => $surfacePattern,
-            'confidence' => ['score' => $score, 'level' => $this->level($score)],
+            // A heuristic evidence score is not a calibrated probability.
+            'confidence' => [
+                'score' => $score,
+                'level' => $this->level($score),
+                'basis' => 'rule_based_evidence_score',
+                'calibrated' => false,
+            ],
             'trace' => $trace,
             'warnings' => $warnings,
             'ambiguities' => $ambiguities,
@@ -293,7 +318,7 @@ final class ComponentDetector
      * @param  list<string>  $chars
      * @return array{rawi_index: int, wasl: ?string, category: string, rule: string, decision: string, forced_radf?: string|null, suppress_taasis?: bool, ambiguous?: bool}
      */
-    private function resolveBareHaaContext(string $originalWord, array $chars, int $last): array
+    private function resolveBareHaaContext(string $originalWord, array $chars, int $last, PhoneticText $phoneticText): array
     {
         $prev = $chars[$last - 1] ?? null;
         $prev2 = $chars[$last - 2] ?? null;
@@ -301,10 +326,10 @@ final class ComponentDetector
         $strippedOriginal = ArabicText::stripTashkeel($originalWord);
         $finalOriginalIsTaMarbuta = str_ends_with($strippedOriginal, 'ة');
 
-        $finalHaaHaraka = $this->harakaLocator->lastForLetter($originalWord, 'ه');
+        $finalHaaHaraka = $phoneticText->harakaAtLetterIndex($last);
 
         $prevHaraka = $prev !== null
-            ? $this->harakaLocator->lastForLetter($originalWord, ArabicText::normalizeForRawi($prev))
+            ? $phoneticText->harakaAtLetterIndex($last - 1)
             : ['mark' => null, 'name' => null, 'class' => null];
 
         $finalHaaHasExplicitMark = $finalHaaHaraka['mark'] !== null;
@@ -513,7 +538,7 @@ final class ComponentDetector
             'components' => ['taasis' => null, 'dakhiil' => null, 'radf' => null, 'rawi' => null, 'wasl' => null, 'khurooj' => null],
             'motions' => ['rass' => null, 'ishbaa' => null, 'hadhw' => null, 'tawjih' => null, 'mujra' => null, 'nafadh' => null],
             'surface_pattern' => null,
-            'confidence' => ['score' => 0.0, 'level' => 'none'],
+            'confidence' => ['score' => 0.0, 'level' => 'none', 'basis' => 'no_rawi', 'calibrated' => false],
             'trace' => [],
             'warnings' => $warnings,
             'ambiguities' => [],

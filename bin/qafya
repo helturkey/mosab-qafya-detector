@@ -1,0 +1,218 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Mosab\QafyaDetector\QafyaDetector;
+
+$autoloadCandidates = [
+    dirname(__DIR__).'/vendor/autoload.php',
+    dirname(__DIR__).'/autoload.php',
+    dirname(__DIR__, 3).'/autoload.php',
+];
+
+$autoload = null;
+foreach ($autoloadCandidates as $candidate) {
+    if (is_file($candidate)) {
+        $autoload = $candidate;
+        break;
+    }
+}
+
+if ($autoload === null) {
+    fwrite(STDERR, "تعذّر العثور على Composer autoload.php. شغّل composer install أولًا.\n");
+    exit(1);
+}
+
+require_once $autoload;
+
+/** @var list<string> $args */
+$args = array_slice($argv, 1);
+
+if ($args === [] || in_array($args[0], ['--help', '-h', 'help'], true)) {
+    usage(STDOUT);
+    exit(0);
+}
+
+$command = array_shift($args);
+$json = false;
+$options = [];
+$positionals = [];
+
+foreach ($args as $arg) {
+    if ($arg === '--json') {
+        $json = true;
+        continue;
+    }
+
+    if ($arg === '--analyze-sadr') {
+        $options['analyze_sadr'] = true;
+        continue;
+    }
+
+    if ($arg === '--no-defects') {
+        $options['detect_defects'] = false;
+        continue;
+    }
+
+    if ($arg === '--no-sanad') {
+        $options['detect_sanad'] = false;
+        continue;
+    }
+
+    if ($arg === '--no-strict-harakat') {
+        $options['strict_harakat'] = false;
+        continue;
+    }
+
+    if (str_starts_with($arg, '--mode=')) {
+        $mode = substr($arg, strlen('--mode='));
+        if (! in_array($mode, ['auto', 'heuristic', 'scholarly'], true)) {
+            fwrite(STDERR, "قيمة --mode غير صحيحة. القيم: auto, heuristic, scholarly\n");
+            exit(2);
+        }
+        $options['mode'] = $mode;
+        continue;
+    }
+
+    if (str_starts_with($arg, '--')) {
+        fwrite(STDERR, "خيار غير معروف: {$arg}\n\n");
+        usage(STDERR);
+        exit(2);
+    }
+
+    $positionals[] = $arg;
+}
+
+$detector = QafyaDetector::make();
+
+try {
+    if ($command === 'word') {
+        if ($positionals === []) {
+            fwrite(STDERR, "أدخل كلمة واحدة على الأقل.\n\n");
+            usage(STDERR);
+            exit(2);
+        }
+
+        $results = [];
+        foreach ($positionals as $word) {
+            $results[] = $detector->extract($word, $options);
+        }
+
+        if ($json) {
+            $payload = array_map(static fn ($result): array => $result->toArray(), $results);
+            echo json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR), PHP_EOL;
+            exit(0);
+        }
+
+        foreach ($results as $index => $result) {
+            if ($index > 0) {
+                echo str_repeat('-', 40), PHP_EOL;
+            }
+
+            printf("الكلمة: %s\n", $result->inputText());
+            printf("الحالة: %s\n", $result->status());
+            printf("الروي: %s\n", display($result->rawi()));
+            printf("الردف: %s\n", display($result->radf()));
+            printf("الوصل: %s\n", display($result->wasl()));
+            printf("الخروج: %s\n", display($result->khurooj()));
+            printf("القافية الظاهرة: %s\n", display($result->patternSurface()));
+            printf("المقطع المستخرج: %s\n", display($result->segmentSurface()));
+            printf("التصنيف: %s / %s\n", $result->category(), display($result->subtype()));
+            printf("الثقة: %s (%.4f)\n", $result->confidenceLevel(), $result->confidenceScore());
+
+            $warnings = $result->warnings();
+            if ($warnings !== []) {
+                printf("تحذيرات: %s\n", implode(', ', array_map(
+                    static fn (array $warning): string => (string) ($warning['type'] ?? 'unknown'),
+                    $warnings,
+                )));
+            }
+
+            $ambiguities = $result->diagnostics['ambiguities'] ?? [];
+            if (is_array($ambiguities) && $ambiguities !== []) {
+                printf("مواضع ملتبسة: %s\n", json_encode($ambiguities, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+            }
+        }
+
+        exit(0);
+    }
+
+    if ($command === 'poem') {
+        if (count($positionals) !== 1) {
+            fwrite(STDERR, "أدخل مسار ملف القصيدة. كل شطر في سطر، أو استخدم *** للفصل بين شطري البيت.\n\n");
+            usage(STDERR);
+            exit(2);
+        }
+
+        $path = $positionals[0];
+        if (! is_file($path) || ! is_readable($path)) {
+            fwrite(STDERR, "ملف القصيدة غير موجود أو غير قابل للقراءة: {$path}\n");
+            exit(2);
+        }
+
+        $text = file_get_contents($path);
+        if ($text === false) {
+            fwrite(STDERR, "تعذرت قراءة ملف القصيدة: {$path}\n");
+            exit(1);
+        }
+
+        $analysis = $detector->analyze($text, $options);
+
+        if ($json) {
+            echo json_encode($analysis->toArray(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR), PHP_EOL;
+            exit(0);
+        }
+
+        printf("الحالة: %s\n", $analysis->status());
+        printf("الخطأ: %s\n", display($analysis->error()));
+        printf("عدد الأبيات: %d\n", $analysis->baytCount());
+        printf("عدد النهايات المحللة: %d\n", $analysis->endingsCount());
+        printf("الروي الغالب: %s\n", display($analysis->rawi()));
+        printf("القافية الظاهرة: %s\n", display($analysis->qafyaPattern()));
+        printf("نسبة القافية الغالبة: %.4f\n", $analysis->dominantRatio());
+        printf("قوافٍ متعددة: %s\n", $analysis->hasMultipleQafyas() ? 'نعم' : 'لا');
+        printf("عدد العيوب: %d\n", count($analysis->defects));
+
+        exit(0);
+    }
+
+    fwrite(STDERR, "أمر غير معروف: ".(string) $command."\n\n");
+    usage(STDERR);
+    exit(2);
+} catch (Throwable $exception) {
+    fwrite(STDERR, "فشل التحليل: {$exception->getMessage()}\n");
+    exit(1);
+}
+
+function display(?string $value): string
+{
+    return $value === null || $value === '' ? '—' : $value;
+}
+
+/** @param resource $stream */
+function usage($stream): void
+{
+    fwrite($stream, <<<TEXT
+أداة اختبار قافية الشعر العربي
+
+الاستخدام:
+  vendor/bin/qafya word "البركة"
+  vendor/bin/qafya word "الهلكة" "البركة" "الحركة" --json
+  vendor/bin/qafya word "قِفَا نَبْكِ مِنْ ذِكْرَى حَبِيبٍ وَمَنْزِلِ"
+  vendor/bin/qafya poem poem.txt --json
+
+الخيارات:
+  --json                  إخراج JSON
+  --mode=auto             الوضع: auto أو heuristic أو scholarly
+  --no-strict-harakat     تعطيل التشدد في الحركات
+  --analyze-sadr          تحليل الصدر والعجز في القصيدة
+  --no-defects            تعطيل كشف عيوب القافية للقصيدة
+  --no-sanad              تعطيل كشف السناد للقصيدة
+  --help                  عرض المساعدة
+
+يمكن تشغيل الأداة من مصدر الحزمة مباشرة أيضًا:
+  php bin/qafya word "البركة"
+
+TEXT);
+}

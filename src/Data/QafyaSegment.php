@@ -6,13 +6,12 @@ namespace Mosab\QafyaDetector\Data;
 
 use JsonSerializable;
 
-/**
- * Immutable qafya boundary segment.
- */
+/** Immutable qafya boundary segment linked to the original input when available. */
 final readonly class QafyaSegment implements JsonSerializable
 {
     /**
      * @param  list<string>  $warnings
+     * @param  array{start_index:?int,end_index:?int,byte_start:?int,byte_end:?int}|null  $sourceSpan
      */
     public function __construct(
         public string $surface,
@@ -24,11 +23,14 @@ final readonly class QafyaSegment implements JsonSerializable
         public ?int $previousSakinIndex,
         public ?int $startIndex,
         public array $warnings = [],
+        public ?array $sourceSpan = null,
     ) {}
 
     /** @param array<string, mixed> $data */
     public static function fromArray(array $data): self
     {
+        $sourceSpan = is_array($data['source_span'] ?? null) ? $data['source_span'] : null;
+
         return new self(
             surface: self::str($data['surface'] ?? null),
             arudic: self::str($data['arudic'] ?? null),
@@ -39,6 +41,12 @@ final readonly class QafyaSegment implements JsonSerializable
             previousSakinIndex: self::intOrNull($data['previous_sakin_index'] ?? null),
             startIndex: self::intOrNull($data['start_index'] ?? null),
             warnings: self::listOfStrings($data['warnings'] ?? []),
+            sourceSpan: $sourceSpan === null ? null : [
+                'start_index' => self::intOrNull($sourceSpan['start_index'] ?? null),
+                'end_index' => self::intOrNull($sourceSpan['end_index'] ?? null),
+                'byte_start' => self::intOrNull($sourceSpan['byte_start'] ?? null),
+                'byte_end' => self::intOrNull($sourceSpan['byte_end'] ?? null),
+            ],
         );
     }
 
@@ -55,6 +63,7 @@ final readonly class QafyaSegment implements JsonSerializable
             'previous_sakin_index' => $this->previousSakinIndex,
             'start_index' => $this->startIndex,
             'warnings' => $this->warnings,
+            'source_span' => $this->sourceSpan,
         ];
     }
 

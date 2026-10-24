@@ -105,12 +105,15 @@ final class FinalAlefLikeRule extends AbstractPoemLevelRule
 
         arsort($preFinalLetters);
         $dominantPreFinal = array_key_first($preFinalLetters);
-        $dominantPreFinalCount = $dominantPreFinal !== null ? $preFinalLetters[$dominantPreFinal] : 0;
+        if (! is_string($dominantPreFinal)) {
+            return $endings;
+        }
+        $dominantPreFinalCount = $preFinalLetters[$dominantPreFinal];
         $dominantPreFinalRatio = $dominantPreFinalCount / max(1, $eligibleCount);
 
         // If the pre-final consonant varies, this is the opposite family:
         // the final alef-like letter itself becomes the poem-level rawi.
-        if ($dominantPreFinal === null || $dominantPreFinalRatio < 0.8) {
+        if ($dominantPreFinalRatio < 0.8) {
             return $endings;
         }
 
@@ -188,11 +191,14 @@ final class FinalAlefLikeRule extends AbstractPoemLevelRule
 
         arsort($radfCounts);
         $dominantRadf = array_key_first($radfCounts);
-        $dominantCount = $dominantRadf !== null ? $radfCounts[$dominantRadf] : 0;
+        if (! is_string($dominantRadf)) {
+            return null;
+        }
+        $dominantCount = $radfCounts[$dominantRadf];
 
         // Preserve only an exact stable radf. If ي/و alternate, do not expose a
         // misleading dominant pattern such as يدا for the whole poem.
-        return $dominantRadf !== null && ($dominantCount / max(1, $eligibleForRawi)) >= 0.8
+        return ($dominantCount / max(1, $eligibleForRawi)) >= 0.8
             ? $dominantRadf
             : null;
     }

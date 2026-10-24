@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "metadata": {
+    "name": "Mosab Qafya Reference Corpus Seed",
+    "purpose": "Schema and workflow seed; not a verified scientific benchmark yet.",
+    "created_by": "Mosab Qafya Detector maintainers",
+    "policy": "Only records with review.status=verified may contribute to evaluation or confidence calibration.",
+    "review_guidance": "A domain-qualified human reviewer must verify each component and cite the source edition and locator before changing a record to verified."
+  },
+  "records": [
+    {
+      "id": "surface-taa-marbuta-albaraka",
+      "kind": "ending",
+      "input": "البركة",
+      "mode": "heuristic",
+      "split": "holdout",
+      "source": {
+        "type": "regression_fixture",
+        "reference": "mosab-qafya-surface-cli-fix 0.2.x regression assertion",
+        "locator": "TaaMarbutaSurfaceDisplayTest::patternSurface"
+      },
+      "expected": {
+        "rawi": "ك",
+        "rawi_haraka": null,
+        "radf": null,
+        "wasl": "ه",
+        "khurooj": null,
+        "taasis": null,
+        "dakhiil": null,
+        "segment_surface": null,
+        "pattern_surface": "كة"
+      },
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_at": null,
+        "rationale": "Imported from a regression assertion; not independently verified as scholarly ground truth."
+      }
+    },
+    {
+      "id": "surface-taa-marbuta-aldika",
+      "kind": "ending",
+      "input": "الديكة",
+      "mode": "heuristic",
+      "split": "holdout",
+      "source": {
+        "type": "regression_fixture",
+        "reference": "mosab-qafya-surface-cli-fix 0.2.x regression assertion",
+        "locator": "TaaMarbutaSurfaceDisplayTest::patternSurface"
+      },
+      "expected": {
+        "rawi": "ك",
+        "rawi_haraka": null,
+        "radf": "ي",
+        "wasl": "ه",
+        "khurooj": null,
+        "taasis": null,
+        "dakhiil": null,
+        "segment_surface": null,
+        "pattern_surface": "يكة"
+      },
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_at": null,
+        "rationale": "Imported from a regression assertion; not independently verified as scholarly ground truth."
+      }
+    },
+    {
+      "id": "surface-pause-najat",
+      "kind": "ending",
+      "input": "نجاة",
+      "mode": "heuristic",
+      "split": "holdout",
+      "source": {
+        "type": "regression_fixture",
+        "reference": "FinalAlefTaaMarbutaPauseAsHaaRawiTest",
+        "locator": "it treats unvocalized taa marbuta after alef as haa rawi"
+      },
+      "expected": {
+        "rawi": "ه",
+        "rawi_haraka": null,
+        "radf": "ا",
+        "wasl": null,
+        "khurooj": null,
+        "taasis": null,
+        "dakhiil": null,
+        "segment_surface": null,
+        "pattern_surface": "اة"
+      },
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_at": null,
+        "rationale": "Imported from a regression assertion; not independently verified as scholarly ground truth."
+      }
+    },
+    {
+      "id": "surface-aya-aziraya",
+      "kind": "ending",
+      "input": "الزراية",
+      "mode": "heuristic",
+      "split": "holdout",
+      "source": {
+        "type": "regression_fixture",
+        "reference": "AyaYaaHaaAndFinalYaaPolicyTest",
+        "locator": "it keeps unvocalized aya and ayh endings in one yaa rawi family"
+      },
+      "expected": {
+        "rawi": "ي",
+        "rawi_haraka": null,
+        "radf": "ا",
+        "wasl": "ه",
+        "khurooj": null,
+        "taasis": null,
+        "dakhiil": null,
+        "segment_surface": null,
+        "pattern_surface": "ايه"
+      },
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_at": null,
+        "rationale": "Imported from a regression assertion; not independently verified as scholarly ground truth."
+      }
+    }
+  ]
+}

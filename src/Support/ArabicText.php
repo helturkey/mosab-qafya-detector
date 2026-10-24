@@ -8,11 +8,8 @@ final class ArabicText
 {
     public static function removeInvisible(string $text): string
     {
-        // Zero-width directional/control marks can appear inside Arabic words
-        // after copy/paste. Removing them is safer than converting them to
-        // spaces, otherwise "ك\u{200F}تاب" becomes "ك تاب" and the last-word
-        // and qafya normalizers see a broken word. Non-breaking spaces remain
-        // word separators.
+        // Remove directional and zero-width control characters without
+        // splitting an Arabic word. A non-breaking space remains a separator.
         $text = str_replace("\u{00A0}", ' ', $text);
 
         return str_replace(array_diff(ArabicLetters::INVISIBLE, ["\u{00A0}"]), '', $text);
@@ -49,9 +46,7 @@ final class ArabicText
         return $letter === 'ة' ? 'ه' : $letter;
     }
 
-    /**
-     * @return list<string>
-     */
+    /** @return list<string> */
     public static function chars(string $text): array
     {
         return mb_str_split($text) ?: [];
@@ -76,9 +71,13 @@ final class ArabicText
         return null;
     }
 
+    /**
+     * Returns true when the input contains a vowel mark, tanween, sukun,
+     * or shadda. Shadda is phonologically meaningful even on its own.
+     */
     public static function containsMeaningfulTashkeel(string $text): bool
     {
-        return preg_match('/[ًٌٍَُِْ]/u', $text) === 1;
+        return preg_match('/[ًٌٍَُِّْ]/u', $text) === 1;
     }
 
     public static function canonicalEndingWord(string $word): string

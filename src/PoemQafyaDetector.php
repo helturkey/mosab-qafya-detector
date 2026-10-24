@@ -63,9 +63,16 @@ final class PoemQafyaDetector implements PoemQafyaDetectorContract
         $lines = $collected['lines'];
         $pairs = $collected['pairs'];
         $endings = $collected['endings'];
+        $unpairedLineCount = (int) ($collected['unpaired_line_count'] ?? 0);
 
         if ($pairs === []) {
-            return $this->empty('empty_or_unpaired_poem', count($lines));
+            $empty = $this->empty('empty_or_unpaired_poem', count($lines));
+            $empty['input']['unpaired_line_count'] = $unpairedLineCount;
+            if ($unpairedLineCount > 0) {
+                $empty['diagnostics'] = ['notes' => ['unpaired_trailing_hemistich_ignored']];
+            }
+
+            return $empty;
         }
 
         $endings = $this->rulePipeline->apply($endings);
@@ -108,7 +115,7 @@ final class PoemQafyaDetector implements PoemQafyaDetectorContract
 
         $status = $hasMultipleQafyas || $hasBlockingDefects
             ? 'review'
-            : 'ok';
+            : ($unpairedLineCount > 0 ? 'partial' : 'ok');
 
         return [
             'status' => $status,
@@ -117,6 +124,7 @@ final class PoemQafyaDetector implements PoemQafyaDetectorContract
                 'type' => 'paired_hemistichs',
                 'lines_count' => count($lines),
                 'bayt_count' => count($pairs),
+                'unpaired_line_count' => $unpairedLineCount,
                 'analyzed_positions' => $options->analyzeSadr ? ['sadr', 'ajz'] : ['ajz'],
             ],
             'reference' => [
@@ -153,6 +161,7 @@ final class PoemQafyaDetector implements PoemQafyaDetectorContract
                 'mode' => $options->mode,
                 'notes' => array_values(array_unique(array_merge(
                     $this->clusterAnalyzer->notes($endings, $clusters, $dominantRatio, $dominantIsAuthoritative),
+                    $unpairedLineCount > 0 ? ['unpaired_trailing_hemistich_ignored'] : [],
                     $defects !== [] && ! $hasBlockingDefects
                         ? ['non_blocking_component_variants_detected']
                         : [],
@@ -167,7 +176,11 @@ final class PoemQafyaDetector implements PoemQafyaDetectorContract
         return [
             'status' => 'partial',
             'error' => $error,
-            'input' => ['lines_count' => $linesCount, 'bayt_count' => 0],
+            'input' => [
+                'lines_count' => $linesCount,
+                'bayt_count' => 0,
+                'unpaired_line_count' => $linesCount % 2,
+            ],
             'summary' => [
                 'is_consistent' => false,
                 'has_multiple_qafyas' => false,
@@ -182,7 +195,9 @@ final class PoemQafyaDetector implements PoemQafyaDetectorContract
             'defects' => [],
             'sanad' => [],
             'endings' => [],
-            'diagnostics' => [],
+            'diagnostics' => $linesCount % 2 === 1
+                ? ['notes' => ['unpaired_trailing_hemistich_ignored']]
+                : [],
         ];
     }
 }

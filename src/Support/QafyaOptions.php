@@ -4,22 +4,21 @@ declare(strict_types=1);
 
 namespace Mosab\QafyaDetector\Support;
 
-/**
- * Immutable runtime options for both word and poem analysis.
- */
+/** Immutable runtime options for word and poem analysis. */
 final readonly class QafyaOptions
 {
+    /** @param array<string, mixed>|null $confidenceCalibrationProfile */
     public function __construct(
         public string $mode = 'auto',
         public bool $strictHarakat = true,
         public bool $analyzeSadr = false,
         public bool $detectDefects = true,
         public bool $detectSanad = true,
+        public bool $useLinguisticEvidence = false,
+        public ?array $confidenceCalibrationProfile = null,
     ) {}
 
-    /**
-     * @param  array<string, mixed>|self  $options
-     */
+    /** @param array<string, mixed>|self $options */
     public static function normalize(array|self $options = []): self
     {
         if ($options instanceof self) {
@@ -37,6 +36,10 @@ final readonly class QafyaOptions
             analyzeSadr: (bool) ($options['analyze_sadr'] ?? $options['analyzeSadr'] ?? false),
             detectDefects: (bool) ($options['detect_defects'] ?? $options['detectDefects'] ?? true),
             detectSanad: (bool) ($options['detect_sanad'] ?? $options['detectSanad'] ?? true),
+            useLinguisticEvidence: (bool) ($options['use_linguistic_evidence'] ?? $options['useLinguisticEvidence'] ?? false),
+            confidenceCalibrationProfile: is_array($options['confidence_calibration_profile'] ?? $options['confidenceCalibrationProfile'] ?? null)
+                ? ($options['confidence_calibration_profile'] ?? $options['confidenceCalibrationProfile'])
+                : null,
         );
     }
 
@@ -46,12 +49,13 @@ final readonly class QafyaOptions
             return $this->mode;
         }
 
-        return ArabicText::containsMeaningfulTashkeel($text) ? 'scholarly' : 'heuristic';
+        // The ending, not a random mark earlier in the hemistich, controls mode.
+        $ending = ArabicText::lastArabicWord($text, preserveTashkeel: true) ?? $text;
+
+        return ArabicText::containsMeaningfulTashkeel($ending) ? 'scholarly' : 'heuristic';
     }
 
-    /**
-     * @return array<string, mixed>
-     */
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
@@ -60,6 +64,8 @@ final readonly class QafyaOptions
             'analyze_sadr' => $this->analyzeSadr,
             'detect_defects' => $this->detectDefects,
             'detect_sanad' => $this->detectSanad,
+            'use_linguistic_evidence' => $this->useLinguisticEvidence,
+            'confidence_calibration_profile' => $this->confidenceCalibrationProfile,
         ];
     }
 }
