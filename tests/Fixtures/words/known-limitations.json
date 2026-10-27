@@ -1,0 +1,70 @@
+{
+  "schema": "mosab.known-limitations.v1",
+  "note": "Words where current behavior is known to differ from the classical reading. Tests pin current behavior; when a limitation is fixed, move the entry into word-components.json.",
+  "words": [
+    {
+      "id": "nisba-yaa-shadda",
+      "word": "نَبَوِيّ",
+      "rule": "final_weak_after_alef_as_rawi",
+      "classical": {
+        "rawi": "ي",
+        "radf": null,
+        "wasl": null
+      },
+      "current": {
+        "rawi": "ي",
+        "radf": "ا",
+        "wasl": null
+      },
+      "note": "Current behavior differs from the classical reading; pinned so a future fix is a deliberate change."
+    },
+    {
+      "id": "waw-before-final-yaa",
+      "word": "قَوِيّ",
+      "rule": "final_weak_after_alef_as_rawi",
+      "classical": {
+        "rawi": "ي",
+        "radf": null,
+        "wasl": null
+      },
+      "current": {
+        "rawi": "ي",
+        "radf": "ا",
+        "wasl": null
+      },
+      "note": "Current behavior differs from the classical reading; pinned so a future fix is a deliberate change."
+    },
+    {
+      "id": "yaa-after-yaa",
+      "word": "حَيِيّ",
+      "rule": "final_weak_after_alef_as_rawi",
+      "classical": {
+        "rawi": "ي",
+        "radf": null,
+        "wasl": null
+      },
+      "current": {
+        "rawi": "ي",
+        "radf": "ا",
+        "wasl": null
+      },
+      "note": "Current behavior differs from the classical reading; pinned so a future fix is a deliberate change."
+    },
+    {
+      "id": "thawi",
+      "word": "ثَاوِي",
+      "rule": "final_weak_after_alef_as_rawi",
+      "classical": {
+        "rawi": "و",
+        "radf": "ا",
+        "wasl": "ي"
+      },
+      "current": {
+        "rawi": "ي",
+        "radf": "ا",
+        "wasl": null
+      },
+      "note": "Current behavior differs from the classical reading; pinned so a future fix is a deliberate change."
+    }
+  ]
+}

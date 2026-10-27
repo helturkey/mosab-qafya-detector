@@ -30,8 +30,12 @@ final class RhymeDefectDetector
                 $defects[] = $this->defect('rawi_mismatch', 'اختلاف الروي', 'error', $bayt, ['rawi' => $ref['rawi']], ['rawi' => $parts['rawi']]);
             }
 
-            if ($ref['rawi'] === $parts['rawi'] && $ref['mujra'] !== null && $parts['mujra'] !== null && $parts['mujra'] !== $ref['mujra']) {
-                $defects[] = $this->defect('iqwa', 'الإقواء', 'error', $bayt, ['mujra' => $ref['mujra']], ['mujra' => $parts['mujra']]);
+            if ($ref['rawi'] === $parts['rawi'] && $this->isVowelMovementChange($ref['mujra'], $parts['mujra'])) {
+                // إقواء: kasra against damma. إصراف: fatha against kasra or damma.
+                $isIsraf = $ref['mujra'] === 'fatha' || $parts['mujra'] === 'fatha';
+                $defects[] = $isIsraf
+                    ? $this->defect('israf', 'الإصراف', 'error', $bayt, ['mujra' => $ref['mujra']], ['mujra' => $parts['mujra']])
+                    : $this->defect('iqwa', 'الإقواء', 'error', $bayt, ['mujra' => $ref['mujra']], ['mujra' => $parts['mujra']]);
             }
 
             if ($ref['radf_family'] !== null && $parts['radf_family'] !== null && $parts['radf_family'] !== $ref['radf_family']) {
@@ -62,6 +66,19 @@ final class RhymeDefectDetector
         }
 
         return $defects;
+    }
+
+    /**
+     * Only a change between the three written short vowels counts. A sukun
+     * against a vowel is a pausal (waqf) variant, not iqwa or israf.
+     */
+    private function isVowelMovementChange(?string $reference, ?string $actual): bool
+    {
+        $vowels = ['fatha', 'damma', 'kasra'];
+
+        return in_array($reference, $vowels, true)
+            && in_array($actual, $vowels, true)
+            && $reference !== $actual;
     }
 
     /**

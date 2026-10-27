@@ -1,0 +1,1974 @@
+{
+  "schema": "mosab.word-components.v1",
+  "note": "Author-constructed regression words. review_status is unreviewed: not verified by a prosody scholar. Expected values equal current behavior; classical_checked lists the keys the author also checked against the classical rule.",
+  "words": [
+    {
+      "id": "fc-sakin",
+      "word": "قَلَمْ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "م",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": "fatha",
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "taasis",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "fc-tanween-damma",
+      "word": "قَلَمٌ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "م",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": "fatha",
+        "mujra": "damma",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "radf-waw",
+      "word": "نُورْ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ر",
+        "radf": "و",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "damma",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "radf-alif",
+      "word": "كِتَابْ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ب",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "radf-yaa",
+      "word": "سَعِيدْ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "د",
+        "radf": "ي",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "kasra",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "radf-waw-noon",
+      "word": "عُيُونْ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": "و",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "damma",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "radf-leen-yaa",
+      "word": "بَيْتْ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ت",
+        "radf": "ي",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "radf-leen-waw",
+      "word": "يَوْمْ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "م",
+        "radf": "و",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "radf-alif-noon-fatha",
+      "word": "الزَّمَانَ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "radf-alif-noon-sukun",
+      "word": "الزَّمَانْ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "taasis-qasid",
+      "word": "قَاصِدٌ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "د",
+        "radf": null,
+        "taasis": "ا",
+        "dakhiil": "ص",
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": "fatha",
+        "ishbaa": "kasra",
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "damma",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "dakhiil",
+        "radf",
+        "rawi",
+        "taasis",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "taasis-katib",
+      "word": "كَاتِبْ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ب",
+        "radf": null,
+        "taasis": "ا",
+        "dakhiil": "ت",
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": "fatha",
+        "ishbaa": "kasra",
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "dakhiil",
+        "rawi",
+        "taasis",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "taasis-jahil",
+      "word": "جَاهِلٌ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ل",
+        "radf": null,
+        "taasis": "ا",
+        "dakhiil": "ه",
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": "fatha",
+        "ishbaa": "kasra",
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "damma",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "dakhiil",
+        "rawi",
+        "taasis",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "no-radf-ghusn",
+      "word": "غُصْنٌ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": "sukun",
+        "mujra": "damma",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "taasis",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "hamza-rawi-alif-radf",
+      "word": "سَمَاءٌ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ء",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "damma",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "vowelled-yaa-not-radf",
+      "word": "يَدُ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "د",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": "fatha",
+        "mujra": "damma",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "vowelled-waw-not-radf",
+      "word": "هَوَسْ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "س",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": "fatha",
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "alef-tanween-yaa-radf",
+      "word": "جَدِيدًا",
+      "group": "expected",
+      "rule": "final_alef",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "د",
+        "radf": "ي",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ا",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "kasra",
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "alef-itlaq",
+      "word": "بَعِيدَا",
+      "group": "expected",
+      "rule": "final_alef",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "د",
+        "radf": "ي",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ا",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "kasra",
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "alef-radf-alef",
+      "word": "سَلَامَا",
+      "group": "expected",
+      "rule": "final_alef",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "م",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ا",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "alef-taasis",
+      "word": "عَاصِفَا",
+      "group": "expected",
+      "rule": "final_alef",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ف",
+        "radf": null,
+        "taasis": "ا",
+        "dakhiil": "ص",
+        "wasl": "ا",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": "fatha",
+        "ishbaa": "kasra",
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "dakhiil",
+        "rawi",
+        "taasis",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "alef-plain",
+      "word": "قَلَمَا",
+      "group": "expected",
+      "rule": "final_alef",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "م",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ا",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "alef-madda",
+      "word": "الدُّنْيَآ",
+      "group": "expected",
+      "rule": "final_alef_madda",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ي",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ا",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "yaa-wasl-radf",
+      "word": "كِتَابِي",
+      "group": "expected",
+      "rule": "final_waw_yaa",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ب",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ي",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "kasra",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "waw-wasl",
+      "word": "قَلْبُو",
+      "group": "expected",
+      "rule": "final_waw_yaa",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ب",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "و",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "damma",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "yaa-wasl-alef-radf",
+      "word": "غَالِي",
+      "group": "expected",
+      "rule": "final_waw_yaa",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ل",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ي",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "kasra",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "verb-waw-ending",
+      "word": "يَدْعُو",
+      "group": "heuristic",
+      "rule": "final_waw_yaa",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ع",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "و",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "damma",
+        "nafadh": null
+      },
+      "classical_checked": [],
+      "ambiguous": [],
+      "review_status": "unreviewed",
+      "note": "Word-level default for a bare final waw; a poem may promote waw to rawi."
+    },
+    {
+      "id": "weak-after-alef",
+      "word": "نَايْ",
+      "group": "expected",
+      "rule": "final_weak_after_alef_as_rawi",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ي",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "maqsura-huda",
+      "word": "هُدَى",
+      "group": "expected",
+      "rule": "final_alef_maqsura",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ى",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": "fatha",
+        "mujra": null,
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "maqsura-sa",
+      "word": "سَعَى",
+      "group": "expected",
+      "rule": "final_alef_maqsura",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ى",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": "fatha",
+        "mujra": null,
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "maqsura-hamza-seat-ya",
+      "word": "عَزَائِى",
+      "group": "expected",
+      "rule": "final_maqsura_after_hamza_seat",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ء",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ي",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "kasra",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "maqsura-hamza-seat-da",
+      "word": "دَائِى",
+      "group": "expected",
+      "rule": "final_maqsura_after_hamza_seat",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ء",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ي",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "kasra",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "hamza-waw-alef",
+      "word": "قَرَءُوا",
+      "group": "expected",
+      "rule": "final_hamza_waw_alef",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ء",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "و",
+        "khurooj": "ا"
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "damma",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "khurooj",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "taa-vocalized-kasra",
+      "word": "الصَّلَاةِ",
+      "group": "expected",
+      "rule": "vocalized_taa_marbuta_as_taa_rawi",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ت",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "kasra",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "taa-vocalized-damma",
+      "word": "النَّجَاةُ",
+      "group": "expected",
+      "rule": "vocalized_taa_marbuta_as_taa_rawi",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ت",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "damma",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "taa-vocalized-tanween",
+      "word": "رَحْمَةً",
+      "group": "expected",
+      "rule": "vocalized_taa_marbuta_as_taa_rawi",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ت",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": "fatha",
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "haa-after-alef",
+      "word": "شِفَاهْ",
+      "group": "expected",
+      "rule": "final_haa_or_paused_taa_marbuta_after_alef_like",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ه",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "haa-after-waw",
+      "word": "يَدْعُوهْ",
+      "group": "expected",
+      "rule": "final_haa_after_waw",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ه",
+        "radf": "و",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "damma",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "haa-sakin-after-yaa",
+      "word": "النَّاحِيَهْ",
+      "group": "expected",
+      "rule": "sakin_haa_after_yaa_pause",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ي",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ه",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": "sukun"
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "haa-vocalized-after-yaa",
+      "word": "عَلَيْهِ",
+      "group": "heuristic",
+      "rule": "vocalized_pronominal_haa_after_yaa",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ل",
+        "radf": "ي",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ه",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": "kasra"
+      },
+      "classical_checked": [],
+      "ambiguous": [],
+      "review_status": "unreviewed",
+      "note": "Pronominal haa after a vocalized yaa is treated as wasl in this package."
+    },
+    {
+      "id": "haa-taa-marbuta-pause",
+      "word": "مَدْرَسَة",
+      "group": "expected",
+      "rule": "bare_haa_pause_or_ta_marbuta",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "س",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ه",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "haa-sakin-taasis",
+      "word": "بَارِدَهْ",
+      "group": "expected",
+      "rule": "bare_haa_pause_or_ta_marbuta",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "د",
+        "radf": null,
+        "taasis": "ا",
+        "dakhiil": "ر",
+        "wasl": "ه",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": "fatha",
+        "ishbaa": "kasra",
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": "sukun"
+      },
+      "classical_checked": [
+        "dakhiil",
+        "rawi",
+        "taasis",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "haa-aya-suffix",
+      "word": "الدرايه",
+      "group": "expected",
+      "rule": "bare_aya_ayh_suffix",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ي",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ه",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": null,
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "haa-bare-after-yaa",
+      "word": "عليه",
+      "group": "heuristic",
+      "rule": "bare_pronominal_haa_after_yaa",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ل",
+        "radf": "ي",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ه",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": null,
+        "nafadh": null
+      },
+      "classical_checked": [],
+      "ambiguous": [
+        "haa_role_needs_poem_context"
+      ],
+      "review_status": "unreviewed",
+      "note": "Unvocalized pronominal haa after yaa is ambiguous and flagged for poem context."
+    },
+    {
+      "id": "haa-bare",
+      "word": "كتابه",
+      "group": "heuristic",
+      "rule": "bare_haa",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ب",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ه",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": null,
+        "nafadh": null
+      },
+      "classical_checked": [],
+      "ambiguous": [
+        "haa_role_needs_poem_context"
+      ],
+      "review_status": "unreviewed",
+      "note": "Unvocalized final haa is ambiguous and flagged for poem context."
+    },
+    {
+      "id": "haa-rawi-madd-khurooj",
+      "word": "ناداها",
+      "group": "expected",
+      "rule": "haa_preceded_by_madd_with_final_madd",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ه",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ا",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": null,
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "haa-rawi-madd-khurooj-2",
+      "word": "جَنَاهَا",
+      "group": "expected",
+      "rule": "haa_preceded_by_madd_with_final_madd",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ه",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ا",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "haa-wasl-khurooj",
+      "word": "عَرَصَاتِها",
+      "group": "expected",
+      "rule": "haa_with_final_madd",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ت",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ه",
+        "khurooj": "ا"
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "kasra",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "khurooj",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "haa-pronoun-damma",
+      "word": "كِتَابُهُ",
+      "group": "expected",
+      "rule": "bare_haa_pause_or_ta_marbuta",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ب",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ه",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "damma",
+        "nafadh": "damma"
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "haa-pronoun-kasra",
+      "word": "حِسَابِهِ",
+      "group": "expected",
+      "rule": "bare_haa_pause_or_ta_marbuta",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ب",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ه",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "kasra",
+        "nafadh": "kasra"
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "noon-tawkid",
+      "word": "تَلْعَبَنَّ",
+      "group": "expected",
+      "rule": "extraneous_noon_tawkid",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ب",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ن",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [
+        "extraneous_noon_resolved_by_context"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "noon-niswa-sukun",
+      "word": "يَكْتُبْنَ",
+      "group": "expected",
+      "rule": "extraneous_noon_niswa",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ب",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ن",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [
+        "extraneous_noon_resolved_by_context"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "noon-niswa-feminine",
+      "word": "تَذْهَبْنَ",
+      "group": "expected",
+      "rule": "extraneous_noon_niswa",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ب",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ن",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [
+        "extraneous_noon_resolved_by_context"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "noon-broken-plural-1",
+      "word": "أَحْزَانَ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "noon-broken-plural-2",
+      "word": "أَوْطَانَ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "noon-broken-plural-3",
+      "word": "أَلْوَانَ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "noon-plural-waw",
+      "word": "يَعْلَمُونَ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": "و",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "damma",
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "noon-plural-yaa",
+      "word": "تَقُولِينَ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": "ي",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "kasra",
+        "tawjih": null,
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "noon-perfect-verb",
+      "word": "أَحْسَنَ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": "fatha",
+        "mujra": "fatha",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "noon-plain",
+      "word": "حَنَانْ",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "undiac-simple",
+      "word": "كتاب",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ب",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": null,
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "undiac-noon",
+      "word": "يكتبن",
+      "group": "expected",
+      "rule": "final_consonant",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ن",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": null,
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "undiac-alef",
+      "word": "جديدا",
+      "group": "expected",
+      "rule": "final_alef",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "د",
+        "radf": "ي",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ا",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": null,
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "undiac-maqsura",
+      "word": "هدى",
+      "group": "expected",
+      "rule": "final_alef_maqsura",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "ى",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": null,
+        "nafadh": null
+      },
+      "classical_checked": [
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "nisba-arabi",
+      "word": "عَرَبِيّ",
+      "group": "heuristic",
+      "rule": "final_waw_yaa",
+      "category": "mutlaqa",
+      "expected": {
+        "rawi": "ب",
+        "radf": null,
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": "ي",
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": null,
+        "tawjih": null,
+        "mujra": "kasra",
+        "nafadh": null
+      },
+      "classical_checked": [],
+      "ambiguous": [],
+      "review_status": "unreviewed",
+      "note": "Shadda yaa is resolved at poem level (FinalYaaRule); word level reports rawi ب with wasl ي."
+    },
+    {
+      "id": "alef-then-waw-final",
+      "word": "سَمَاوْ",
+      "group": "expected",
+      "rule": "final_weak_after_alef_as_rawi",
+      "category": "muqayyada",
+      "expected": {
+        "rawi": "و",
+        "radf": "ا",
+        "taasis": null,
+        "dakhiil": null,
+        "wasl": null,
+        "khurooj": null
+      },
+      "motions": {
+        "rass": null,
+        "ishbaa": null,
+        "hadhw": "fatha",
+        "tawjih": null,
+        "mujra": "sukun",
+        "nafadh": null
+      },
+      "classical_checked": [
+        "radf",
+        "rawi",
+        "wasl"
+      ],
+      "ambiguous": [],
+      "review_status": "unreviewed"
+    }
+  ]
+}

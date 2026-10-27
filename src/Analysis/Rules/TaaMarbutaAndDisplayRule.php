@@ -211,7 +211,7 @@ final class TaaMarbutaAndDisplayRule extends AbstractPoemLevelRule
 
         $result['qafya']['motions']['mujra'] = null;
         $result['qafya']['motions']['tawjih'] = null;
-        $result['qafya']['motions']['hadhw'] = $radf !== null ? 'vowel_before_radf' : null;
+        $result['qafya']['motions']['hadhw'] = $radf !== null && is_string($result['qafya']['motions']['hadhw'] ?? null) ? $result['qafya']['motions']['hadhw'] : null;
         $result['qafya']['motions']['ishbaa'] = null;
         $result['qafya']['motions']['nafadh'] = null;
 

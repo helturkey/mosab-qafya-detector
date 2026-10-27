@@ -166,9 +166,9 @@ final class CollectiveWawAlefRule extends AbstractPoemLevelRule
 
         $result['qafya']['motions']['mujra'] = null;
         $result['qafya']['motions']['tawjih'] = null;
-        $result['qafya']['motions']['hadhw'] = $radf !== null ? 'vowel_before_radf' : null;
+        $result['qafya']['motions']['hadhw'] = $radf !== null && is_string($result['qafya']['motions']['hadhw'] ?? null) ? $result['qafya']['motions']['hadhw'] : null;
         $result['qafya']['motions']['ishbaa'] = null;
-        $result['qafya']['motions']['nafadh'] = 'vowel_before_khurooj';
+        $result['qafya']['motions']['nafadh'] = null;
 
         $components = is_array($result['qafya']['components'] ?? null) ? $result['qafya']['components'] : [];
         $motions = is_array($result['qafya']['motions'] ?? null) ? $result['qafya']['motions'] : [];

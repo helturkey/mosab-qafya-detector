@@ -1,10 +1,15 @@
 # Mosab Qafya Detector
 
-**Mosab Qafya Detector** is a PHP-first package for Arabic qafya detection. It extracts the core rhyme letter (**rawi**), qafya components such as **radf**, **wasl**, **khurooj**, **taasis**, and **dakhiil**, and provides poem-level analysis with diagnostics, clusters, defects, sanad, and review flags.
+**Mosab Qafya Detector** is a PHP library for structured analysis of classical Arabic rhyme (*qāfiyah*). It extracts the rawī and related components, analyzes poem endings in context, reports possible rhyme defects and *sanād*, and returns typed PHP results or JSON-ready arrays.
 
-> This is a production-ready machine-assisted qafya detector. It is not a replacement for human scholarly verification in ambiguous poems.
+The package is designed for integration into PHP applications and Laravel projects. Results include status, evidence, warnings, ambiguity signals, rule traces, clustering, and review-oriented diagnostics so an application can distinguish a usable result from one that needs editorial review.
 
----
+## Requirements
+
+- PHP **8.4 or later** (`^8.4`).
+- The PHP `mbstring` extension for Unicode-aware operations.
+- Composer.
+- Laravel integration is optional; the service provider targets Laravel applications using supported Illuminate versions.
 
 ## Installation
 
@@ -12,42 +17,64 @@
 composer require helturkey/mosab-qafya-detector
 ```
 
----
-
-## Quick Usage
+## Quick start: analyze an ending
 
 ```php
 use Mosab\QafyaDetector\QafyaDetector;
 
-$result = QafyaDetector::make()->extract('ناداها');
+$detector = QafyaDetector::make();
+$result = $detector->extract('ناداها');
 
-$result->rawi();           // ه
-$result->radf();           // ا
-$result->wasl();           // ا
-$result->patternSurface(); // اها
+$result->status();          // ok
+$result->rawi();            // ه
+$result->radf();            // ا
+$result->wasl();            // ا
+$result->patternSurface();  // اها
+$result->confidenceLevel();
+$result->warnings();
 ```
 
----
+## Analyze a poem
 
-## Analyze a Poem
+Pass the poem as a list of hemistichs or as a string that the line splitter can parse. By default, only the second hemistich (*ʿajuz*) of each complete bayt is used for poem-level clustering. Set `analyze_sadr` to `true` to analyze both halves.
 
 ```php
-$analysis = QafyaDetector::make()->analyze([
+$analysis = $detector->analyze([
     'قفْ بالديار وصحْ إلى بيداها',
     'فعسى الديار تجيبُ منْ ناداها',
 ]);
 
-$analysis->status();             // ok|review|partial|error
-$analysis->rawi();               // ه
-$analysis->qafyaPattern();       // اها
-$analysis->hasMultipleQafyas();  // false
+$analysis->status();
+$analysis->rawi();
+$analysis->qafyaPattern();
+$analysis->hasMultipleQafyas();
+$analysis->dominantRatio();
 $analysis->clusters();
 $analysis->endings();
+$analysis->defects();
+$analysis->sanad();
 ```
 
----
+## Runtime options
+
+Options can be passed as an associative array or as `Mosab\QafyaDetector\Support\QafyaOptions`:
+
+```php
+$analysis = $detector->analyze($poem, [
+    'mode' => 'auto',                 // auto | heuristic | scholarly
+    'strict_harakat' => true,
+    'analyze_sadr' => false,
+    'detect_defects' => true,
+    'detect_sanad' => true,
+    'use_linguistic_evidence' => false,
+]);
+```
+
+`auto` selects the boundary-analysis mode from meaningful diacritics on the final Arabic word. The `scholarly` mode is a processing mode name, not a claim that an output has been certified by a human scholar. Linguistic providers and confidence-calibration profiles are opt-in; see the full guide.
 
 ## Laravel
+
+The package registers its service provider through Laravel package discovery.
 
 ```php
 use Mosab\QafyaDetector\Laravel\Facades\QafyaDetector;
@@ -56,102 +83,64 @@ $result = QafyaDetector::extract('كتابُهُ');
 $analysis = QafyaDetector::analyze($poem);
 ```
 
-Publish config:
+Publish the optional configuration file:
 
 ```bash
 php artisan vendor:publish --tag=mosab-qafya-detector-config
 ```
 
----
+## Command-line tool
 
-## API
+From the source checkout:
 
-```php
-QafyaDetector::make()->extract(string $text, array|QafyaOptions $options = []): QafyaResult
-QafyaDetector::make()->extractArray(string $text, array|QafyaOptions $options = []): array
-
-QafyaDetector::make()->analyze(string|array $poem, array|QafyaOptions $options = []): PoemQafyaAnalysis
-QafyaDetector::make()->analyzeArray(string|array $poem, array|QafyaOptions $options = []): array
+```bash
+php bin/qafya word "البركة"
+php bin/qafya word "البركة" "الديكة" --json
+php bin/qafya poem poem.txt --json
 ```
 
----
+For an installed dependency, run `php vendor/helturkey/mosab-qafya-detector/bin/qafya ...` from the consuming application's root. The poem file uses one hemistich per line; the CLI also documents `***` as a separator between the two halves of a bayt. Use `--help` for all options.
 
-## Poem-Level Policy
+## Interpreting results
 
-The public poem-level qafya identity is based on **rawi**.
+- `ok`: the detector produced a rawi result for the analyzed input.
+- `review`: poem-level diagnostics indicate that the result should be reviewed, such as multiple rawi clusters or blocking defects.
+- `partial`: the input or available phonetic evidence was insufficient for a complete analysis.
+- `error`: analysis could not be completed for the input.
 
-- `radf`, `wasl`, `khurooj`, `taasis`, `dakhiil`, and harakat are preserved in details.
-- They may produce defects or sanad warnings.
-- They do not automatically mean that the poem has multiple qafyas.
+At poem level, canonical **rawi identity** determines the public qafya cluster. Other components (radf, wasl, khurooj, taasis, dakhiil, and vowel motions) remain available in per-ending details and can contribute defects or sanad. `dominant` is the authoritative public result when the dominant cluster meets the package's authority policy; `indexing` exposes the most frequent cluster for browsing and filtering.
 
-The package separates:
+Rule-based confidence scores are evidence scores unless a separately supplied calibration profile has passed the implementation's validation gates. Do not interpret a raw score as a statistically calibrated probability. Ambiguous and weakly vocalized poetry should be reviewed by a qualified reader.
 
-- `dominant`: reliable public qafya when authoritative.
-- `indexing`: most frequent rawi/cluster for search and filtering.
-- `clusters`: grouped rawi-level results.
-- `endings`: every analyzed ending.
+## Quality commands
 
----
-
-## Quality
+Run these from the repository root:
 
 ```bash
 composer validate --strict
-vendor/bin/pint --test
-vendor/bin/phpstan analyse src
-vendor/bin/pest
-php benchmarks/basic.php
+composer test
+composer analyse
+composer lint
 ```
 
----
+The commands check package metadata, regressions, static analysis and style. A syntactically valid regression fixture is not the same as a human-verified scholarly benchmark. Do not publish accuracy figures unless verified records and evaluation results support them.
 
 ## Documentation
 
-- [Arabic documentation](docs/ar.md)
-- [English documentation](docs/en.md)
+- [English guide](docs/en/README.md)
+- [الدليل العربي](docs/ar/README.md)
+- [Architecture](docs/en/architecture.md) · [Testing](docs/en/testing.md) · [Rule registry](docs/en/rule-registry.md)
+- [بنية الحزمة](docs/ar/architecture.md) · [الاختبارات](docs/ar/testing.md) · [سجل القواعد](docs/ar/rule-registry.md)
 
----
+## Project origin
 
-## Known Limitations
+Mosab Qafya Detector grew out of Arabic qafya-analysis work for **[موسوعة الشعراء](https://poetspedia.com/)**. The package was separated as a reusable PHP library, while its poem-classification capability is already used by the live [الرويّ والقافية](https://poetspedia.com/rhymes/). It is intended for Arabic-poetry developers, researchers, and language-tool authors who need structured results that can be integrated into applications.
 
-Arabic qafya often needs context. Undiacritized poetry, ambiguous final haa, extra noon forms, and multi-section poems may require human review. The package exposes `status`, `defects`, `sanad`, `clusters`, and `endings` so applications can decide whether a result is authoritative or needs review.
+## Live use: Arabic poem classification on Poetspedia
 
----
-## Why the package is named Mosab
+This package was built to classify Arabic poems by **qafya (rhyme) at poem level**, including the rawi-based grouping used for browsing and classification. This functionality is **already working on the live Poetspedia site**; it is not merely a proposed feature or a future roadmap item.
 
-The name **Mosab** was chosen because it carries a direct poetic and historical meaning in Arabic culture.
+- **Poetspedia:** <https://poetspedia.com/>
+- **Live Arabic rhyme-classification page:** <https://poetspedia.com/rhymes/>
 
-In Arabic, **مُصعب** suggests strength, firmness, and the ability to handle difficult matters. This fits the package because Arabic qafya detection is not a simple “last-letter” problem. It requires dealing with complex endings, ambiguous letters, weak letters, haa, radf, wasl, khurooj, taasis, dakhiil, and poem-level context.
-
-The name also echoes the spirit of classical Arabic poetry: concise, strong, and rooted in Arabic language heritage.
-
-So the package name reflects its purpose:
-
-- **Strong enough** to handle difficult Arabic qafya cases.
-- **Arabic in identity**, not a generic NLP name.
-- **Short and memorable** for a PHP package.
-- **Suitable for open source**, while still connected to Arabic poetry and language.
-
-In short, **Mosab Qafya Detector** means a serious Arabic-first tool built to handle one of the most difficult parts of Arabic poetry analysis: the qafya.
-
-## لماذا اخترنا اسم مصعب للحزمة؟
-
-اخترنا اسم **مُصعب** لأنه اسم عربي قصير، واضح، وله إيحاء مناسب لطبيعة الحزمة.
-
-فالقافية العربية ليست مسألة سهلة يمكن حلّها بالنظر إلى آخر حرف فقط. تحليل القافية يحتاج التعامل مع حالات دقيقة مثل: الروي، الردف، الوصل، الخروج، التأسيس، الدخيل، الهاء، حروف العلة، والألف المقصورة، مع مراعاة سياق القصيدة لا الكلمة وحدها.
-
-واسم **مُصعب** في العربية يوحي بالقوة والصلابة والقدرة على معالجة  الأمور الصعبة، وهذا يناسب هدف الحزمة: بناء أداة عربية جادة تستطيع التعامل مع صعوبة القافية لا تبسيطها تبسيطًا مخلًا.
-
-كما أن الاسم يحمل طابعًا عربيًا أصيلًا، ويبتعد عن الأسماء التقنية العامة، ليبقى قريبًا من مجال الشعر واللغة العربية.
-
-باختصار، اسم **Mosab Qafya Detector** يعني:
-
-- أداة عربية الهوية.
-- مخصصة لمشكلة دقيقة وصعبة في الشعر العربي.
-- قصيرة وسهلة التذكر كاسم حزمة.
-- مناسبة لمشروع مفتوح المصدر يخدم مطوري الشعر العربي والباحثين في القافية.
-
-لذلك كان اسم **مُصعب** اختيارًا مناسبًا لحزمة تهدف إلى تحليل واحد من أصعب أبواب الشعر العربي: **القافية**.
-
-## Source:
-This package started as part of the core qafya analysis work behind [موسوعة الشعراء](https://poetspedia.com), then became open source to help Arabic poetry developers, researchers, and linguists.
+The public rhyme page currently describes automated classification as experimental and notes that difficult cases may be inaccurate. That is compatible with the package's operating role: it performs real classification, exposes clusters and diagnostics, and preserves uncertainty for review rather than claiming scholarly certainty for every unvocalized or ambiguous poem. See [the production-use notes](docs/en/production-use.md) for the scope and limitations.

@@ -1,0 +1,128 @@
+{
+  "schema": "mosab.input-normalization.v1",
+  "note": "Inputs that must reduce to the same ending as the plain word, or to no ending at all.",
+  "cases": [
+    {
+      "id": "trailing-period",
+      "input": "هذا كتابٌ.",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": null,
+      "last_word": "كتابٌ"
+    },
+    {
+      "id": "guillemets",
+      "input": "«كتابُهُ»",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": "ه",
+      "last_word": "كتابُهُ"
+    },
+    {
+      "id": "colon-and-bang",
+      "input": "قال: كتابْ!",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": null,
+      "last_word": "كتابْ"
+    },
+    {
+      "id": "rlm-mark",
+      "input": "كتابٌ‏",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": null,
+      "last_word": "كتابٌ"
+    },
+    {
+      "id": "zero-width-space",
+      "input": "كتابٌ​",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": null,
+      "last_word": "كتابٌ"
+    },
+    {
+      "id": "nbsp-separator",
+      "input": "هذا كتابْ ",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": null,
+      "last_word": "كتابْ"
+    },
+    {
+      "id": "latin-words-ignored",
+      "input": "hello كتابْ world",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": null,
+      "last_word": "كتابْ"
+    },
+    {
+      "id": "arabic-question-mark",
+      "input": "هذا   كتابُهُ ؟",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": "ه",
+      "last_word": "كتابُهُ"
+    },
+    {
+      "id": "arabic-indic-digits-ignored",
+      "input": "كتابْ ١٢٣",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": null,
+      "last_word": "كتابْ"
+    },
+    {
+      "id": "tatweel",
+      "input": "كتــابْ",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": null,
+      "last_word": "كتــابْ"
+    },
+    {
+      "id": "arabic-comma",
+      "input": "يا ليلُ، كتابْ،",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": null,
+      "last_word": "كتابْ"
+    },
+    {
+      "id": "ellipsis",
+      "input": "كتابْ…",
+      "expected_rawi": "ب",
+      "expected_radf": "ا",
+      "expected_wasl": null,
+      "last_word": "كتابْ"
+    }
+  ],
+  "no_ending": [
+    {
+      "id": "empty",
+      "input": ""
+    },
+    {
+      "id": "spaces",
+      "input": "   "
+    },
+    {
+      "id": "latin-only",
+      "input": "hello"
+    },
+    {
+      "id": "digits-only",
+      "input": "12345"
+    },
+    {
+      "id": "punctuation-only",
+      "input": "...!؟"
+    },
+    {
+      "id": "arabic-indic-digits-only",
+      "input": "١٢٣"
+    }
+  ]
+}

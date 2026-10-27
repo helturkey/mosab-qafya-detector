@@ -224,7 +224,7 @@ final class ComponentDetector
         $twoBeforeRawi = $chars[$rawiIndex - 2] ?? null;
         if ($forcedRadf !== null) {
             $radf = $forcedRadf;
-        } elseif ($this->isMaddOrAlefMadda($beforeRawi)) {
+        } elseif ($this->isMaddOrAlefMadda($beforeRawi) && ! $this->isVowelledWeakLetter($phoneticText, $rawiIndex - 1, $beforeRawi)) {
             $radf = $this->canonicalMaddLike($beforeRawi);
         } elseif (! $suppressTaasis && in_array($twoBeforeRawi, ['ا', 'ى'], true) && $beforeRawi !== null) {
             $taasis = 'ا';
@@ -258,7 +258,7 @@ final class ComponentDetector
         $waslHaraka = $waslIndex !== null
             ? $phoneticText->harakaAtLetterIndex($waslIndex)
             : $this->harakaLocator->lastForLetter($word, $wasl);
-        $motions = $this->motions($rawiHaraka, $waslHaraka, $radf, $taasis, $dakhiil, $wasl, $khurooj);
+        $motions = $this->motions($phoneticText, $rawiIndex, $rawiHaraka, $waslHaraka, $radf, $taasis, $dakhiil, $wasl);
         $rawiEligibility = $this->eligibility->assess($rawi);
 
         $components = [
@@ -509,20 +509,50 @@ final class ComponentDetector
     }
 
     /**
+     * Classical vowel motions, read from the exact letter positions.
+     *
+     * A motion is null when its letter is absent or its vowel is not written.
+     * No placeholder labels are emitted: every non-null value is a real vowel
+     * class (fatha, damma, kasra or sukun) taken from the source text.
+     *
+     * - rass: vowel of the letter before the ta'sis alif.
+     * - ishbaa: vowel of the dakhiil.
+     * - hadhw: vowel of the letter before the radf.
+     * - tawjih: vowel of the letter before a muqayyad rawi (no radf/ta'sis).
+     * - mujra: vowel of the rawi as written.
+     * - nafadh: vowel of a haa wasl.
+     *
      * @param  array{mark: ?string, name: ?string, class: ?string}  $rawiHaraka
      * @param  array{mark: ?string, name: ?string, class: ?string}  $waslHaraka
      * @return array<string, mixed>
      */
-    private function motions(array $rawiHaraka, array $waslHaraka, ?string $radf, ?string $taasis, ?string $dakhiil, ?string $wasl, ?string $khurooj): array
+    private function motions(PhoneticText $phoneticText, int $rawiIndex, array $rawiHaraka, array $waslHaraka, ?string $radf, ?string $taasis, ?string $dakhiil, ?string $wasl): array
     {
+        $isHaaWasl = $wasl !== null && ArabicLetters::isHaa($wasl);
+
         return [
-            'rass' => $taasis !== null ? 'required_before_taasis' : null,
-            'ishbaa' => $dakhiil !== null ? $waslHaraka['class'] : null,
-            'hadhw' => $radf !== null ? 'vowel_before_radf' : null,
-            'tawjih' => $wasl === null ? $rawiHaraka['class'] : null,
+            'rass' => $taasis !== null ? $phoneticText->harakaAtLetterIndex($rawiIndex - 3)['class'] : null,
+            'ishbaa' => $dakhiil !== null ? $phoneticText->harakaAtLetterIndex($rawiIndex - 1)['class'] : null,
+            'hadhw' => $radf !== null ? $phoneticText->harakaAtLetterIndex($rawiIndex - 2)['class'] : null,
+            'tawjih' => ($wasl === null && $radf === null && $taasis === null)
+                ? $phoneticText->harakaAtLetterIndex($rawiIndex - 1)['class']
+                : null,
             'mujra' => $rawiHaraka['class'],
-            'nafadh' => $khurooj !== null ? 'vowel_before_khurooj' : null,
+            'nafadh' => $isHaaWasl ? $waslHaraka['class'] : null,
         ];
+    }
+
+    /**
+     * A waw/yaa that carries an explicit short vowel is a moving consonant
+     * (حَوَل / عَوَر), not a radf letter.
+     */
+    private function isVowelledWeakLetter(PhoneticText $phoneticText, int $letterIndex, ?string $letter): bool
+    {
+        if (! in_array($letter, ['و', 'ي'], true)) {
+            return false;
+        }
+
+        return in_array($phoneticText->harakaAtLetterIndex($letterIndex)['class'], ['fatha', 'damma', 'kasra'], true);
     }
 
     /**

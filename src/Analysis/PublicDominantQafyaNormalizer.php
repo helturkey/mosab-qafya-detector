@@ -180,12 +180,12 @@ final class PublicDominantQafyaNormalizer
             default => 'muqayyada_mujarrada',
         };
 
-        $result['qafya']['motions']['rass'] = $taasis !== null ? 'required_before_taasis' : null;
+        $result['qafya']['motions']['rass'] = $taasis !== null && is_string($result['qafya']['motions']['rass'] ?? null) ? $result['qafya']['motions']['rass'] : null;
         $result['qafya']['motions']['ishbaa'] = $dakhiil !== null ? ($result['qafya']['motions']['ishbaa'] ?? null) : null;
-        $result['qafya']['motions']['hadhw'] = $radf !== null ? 'vowel_before_radf' : null;
-        $result['qafya']['motions']['tawjih'] = $wasl === null ? $mujra : null;
+        $result['qafya']['motions']['hadhw'] = $radf !== null && is_string($result['qafya']['motions']['hadhw'] ?? null) ? $result['qafya']['motions']['hadhw'] : null;
+        $result['qafya']['motions']['tawjih'] = $wasl === null && $radf === null && $taasis === null && is_string($result['qafya']['motions']['tawjih'] ?? null) ? $result['qafya']['motions']['tawjih'] : null;
         $result['qafya']['motions']['mujra'] = $mujra;
-        $result['qafya']['motions']['nafadh'] = $khurooj !== null ? 'vowel_before_khurooj' : null;
+        $result['qafya']['motions']['nafadh'] = $khurooj !== null && is_string($result['qafya']['motions']['nafadh'] ?? null) ? $result['qafya']['motions']['nafadh'] : null;
 
         $components = is_array($result['qafya']['components'] ?? null) ? $result['qafya']['components'] : [];
         $motions = is_array($result['qafya']['motions'] ?? null) ? $result['qafya']['motions'] : [];

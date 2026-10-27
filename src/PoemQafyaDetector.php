@@ -77,19 +77,28 @@ final class PoemQafyaDetector implements PoemQafyaDetectorContract
 
         $endings = $this->rulePipeline->apply($endings);
 
-        $reference = $this->clusterAnalyzer->firstValid($endings);
-        if ($reference === null) {
+        $firstValid = $this->clusterAnalyzer->firstValid($endings);
+        if ($firstValid === null) {
             return $this->empty('no_valid_qafya_reference', count($lines));
         }
 
-        $referenceResult = is_array($reference['result'] ?? null) ? $reference['result'] : [];
-        $obligations = $this->obligations->resolve($referenceResult);
         $clusters = $this->clusterAnalyzer->clusters($endings);
         $dominant = $clusters[0] ?? ['signature' => null, 'count' => 0, 'ratio' => 0.0];
+        $dominantSignature = is_string($dominant['signature'] ?? null) ? $dominant['signature'] : null;
+
+        // Defects are measured against an ending of the dominant rawi cluster,
+        // so one odd opening ending does not make every other verse a defect.
+        $dominantReference = $this->clusterAnalyzer->firstValidInCluster($endings, $dominantSignature);
+        $reference = $dominantReference ?? $firstValid;
+        $referenceIsFirstValid = ($reference['bayt'] ?? null) === ($firstValid['bayt'] ?? null)
+            && ($reference['position'] ?? null) === ($firstValid['position'] ?? null);
+        $referenceSource = $referenceIsFirstValid ? 'first_valid_ending' : 'first_valid_ending_in_dominant_cluster';
+
+        $referenceResult = is_array($reference['result'] ?? null) ? $reference['result'] : [];
+        $obligations = $this->obligations->resolve($referenceResult);
         $defects = $options->detectDefects ? $this->defects->detect($reference, $endings) : [];
         $sanad = $options->detectSanad ? $this->sanad->fromDefects($defects) : [];
 
-        $dominantSignature = is_string($dominant['signature'] ?? null) ? $dominant['signature'] : null;
         $mostFrequentResult = $this->dominantNormalizer->normalize($endings, $dominantSignature) ?? $referenceResult;
         $total = count($endings);
         $dominantCount = (int) $dominant['count'];
@@ -128,7 +137,7 @@ final class PoemQafyaDetector implements PoemQafyaDetectorContract
                 'analyzed_positions' => $options->analyzeSadr ? ['sadr', 'ajz'] : ['ajz'],
             ],
             'reference' => [
-                'source' => 'first_valid_ending',
+                'source' => $referenceSource,
                 'bayt' => $reference['bayt'],
                 'position' => $reference['position'],
                 'ending' => $reference['text'],

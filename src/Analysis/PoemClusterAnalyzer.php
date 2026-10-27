@@ -27,6 +27,29 @@ final class PoemClusterAnalyzer
     }
 
     /**
+     * First valid ending that belongs to the given rawi cluster.
+     *
+     * @param  list<array<string, mixed>>  $endings
+     * @return array<string, mixed>|null
+     */
+    public function firstValidInCluster(array $endings, ?string $signature): ?array
+    {
+        if ($signature === null) {
+            return null;
+        }
+
+        foreach ($endings as $ending) {
+            $result = is_array($ending['result'] ?? null) ? $ending['result'] : [];
+
+            if (($result['status'] ?? null) === 'ok' && $this->rawiClusterSignature($result) === $signature) {
+                return $ending;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Public poem-level clusters are grouped by rawi only.
      *
      * Do not include radf, wasl, khurooj, taasis, dakhiil, or pattern in this

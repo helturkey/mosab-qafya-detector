@@ -1,0 +1,790 @@
+{
+  "schema": "mosab.multi-bayt-regression.v1",
+  "note": "Author-constructed multi-bayt regression poems built only from consonant-rawi endings, so no poem-level override rule applies. review_status is unreviewed: these pin current behavior and are not scholar-verified.",
+  "poems": [
+    {
+      "id": "consistent-radf-alif",
+      "lines": [
+        "صدر 1",
+        "هذا كِتَابْ",
+        "صدر 2",
+        "هذا حِسَابْ",
+        "صدر 3",
+        "هذا عَذَابْ",
+        "صدر 4",
+        "هذا سَرَابْ"
+      ],
+      "endings": [
+        "كِتَابْ",
+        "حِسَابْ",
+        "عَذَابْ",
+        "سَرَابْ"
+      ],
+      "expected": {
+        "status": "ok",
+        "rawi": "ب",
+        "consistent": true,
+        "multiple": false,
+        "authoritative": true,
+        "ratio": 1.0,
+        "bayt_count": 4,
+        "defects": {},
+        "reference_source": "first_valid_ending",
+        "reference_bayt": 0,
+        "most_frequent_rawi": "ب",
+        "usable_for_filtering": true
+      },
+      "word_level": [
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        }
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "minority-last-ending",
+      "lines": [
+        "صدر 1",
+        "هذا كِتَابْ",
+        "صدر 2",
+        "هذا حِسَابْ",
+        "صدر 3",
+        "هذا عَذَابْ",
+        "صدر 4",
+        "هذا سَلَامْ"
+      ],
+      "endings": [
+        "كِتَابْ",
+        "حِسَابْ",
+        "عَذَابْ",
+        "سَلَامْ"
+      ],
+      "expected": {
+        "status": "review",
+        "rawi": null,
+        "consistent": false,
+        "multiple": true,
+        "authoritative": false,
+        "ratio": 0.75,
+        "bayt_count": 4,
+        "defects": {
+          "rawi_mismatch": [
+            3
+          ]
+        },
+        "reference_source": "first_valid_ending",
+        "reference_bayt": 0,
+        "most_frequent_rawi": "ب",
+        "usable_for_filtering": false
+      },
+      "word_level": [
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        }
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "minority-first-ending",
+      "lines": [
+        "صدر 1",
+        "هذا سَلَامْ",
+        "صدر 2",
+        "هذا كِتَابْ",
+        "صدر 3",
+        "هذا حِسَابْ",
+        "صدر 4",
+        "هذا عَذَابْ"
+      ],
+      "endings": [
+        "سَلَامْ",
+        "كِتَابْ",
+        "حِسَابْ",
+        "عَذَابْ"
+      ],
+      "expected": {
+        "status": "review",
+        "rawi": null,
+        "consistent": false,
+        "multiple": true,
+        "authoritative": false,
+        "ratio": 0.75,
+        "bayt_count": 4,
+        "defects": {
+          "rawi_mismatch": [
+            0
+          ]
+        },
+        "reference_source": "first_valid_ending_in_dominant_cluster",
+        "reference_bayt": 1,
+        "most_frequent_rawi": "ب",
+        "usable_for_filtering": false
+      },
+      "word_level": [
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        }
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "sanad-radf-alif-vs-waw",
+      "lines": [
+        "صدر 1",
+        "هذا سَلَامْ",
+        "صدر 2",
+        "هذا كَلَامْ",
+        "صدر 3",
+        "هذا نُومْ",
+        "صدر 4",
+        "هذا يَوْمْ"
+      ],
+      "endings": [
+        "سَلَامْ",
+        "كَلَامْ",
+        "نُومْ",
+        "يَوْمْ"
+      ],
+      "expected": {
+        "status": "ok",
+        "rawi": "م",
+        "consistent": true,
+        "multiple": false,
+        "authoritative": true,
+        "ratio": 1.0,
+        "bayt_count": 4,
+        "defects": {
+          "sanad_radf": [
+            2,
+            3
+          ]
+        },
+        "reference_source": "first_valid_ending",
+        "reference_bayt": 0,
+        "most_frequent_rawi": "م",
+        "usable_for_filtering": true
+      },
+      "word_level": [
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "م",
+          "radf": "و",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "م",
+          "radf": "و",
+          "wasl": null,
+          "mujra": "sukun"
+        }
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "sanad-radf-missing-radf",
+      "lines": [
+        "صدر 1",
+        "هذا سَلَامْ",
+        "صدر 2",
+        "هذا كَلَامْ",
+        "صدر 3",
+        "هذا قَلَمْ"
+      ],
+      "endings": [
+        "سَلَامْ",
+        "كَلَامْ",
+        "قَلَمْ"
+      ],
+      "expected": {
+        "status": "ok",
+        "rawi": "م",
+        "consistent": true,
+        "multiple": false,
+        "authoritative": true,
+        "ratio": 1.0,
+        "bayt_count": 3,
+        "defects": {
+          "sanad_radf": [
+            2
+          ]
+        },
+        "reference_source": "first_valid_ending",
+        "reference_bayt": 0,
+        "most_frequent_rawi": "م",
+        "usable_for_filtering": true
+      },
+      "word_level": [
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "م",
+          "radf": null,
+          "wasl": null,
+          "mujra": "sukun"
+        }
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "sanad-taasis",
+      "lines": [
+        "صدر 1",
+        "هذا كَاتِبْ",
+        "صدر 2",
+        "هذا طَالِبْ",
+        "صدر 3",
+        "هذا قَلْبْ"
+      ],
+      "endings": [
+        "كَاتِبْ",
+        "طَالِبْ",
+        "قَلْبْ"
+      ],
+      "expected": {
+        "status": "ok",
+        "rawi": "ب",
+        "consistent": true,
+        "multiple": false,
+        "authoritative": true,
+        "ratio": 1.0,
+        "bayt_count": 3,
+        "defects": {
+          "sanad_taasis": [
+            2
+          ]
+        },
+        "reference_source": "first_valid_ending",
+        "reference_bayt": 0,
+        "most_frequent_rawi": "ب",
+        "usable_for_filtering": true
+      },
+      "word_level": [
+        {
+          "rawi": "ب",
+          "radf": null,
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": null,
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": null,
+          "wasl": null,
+          "mujra": "sukun"
+        }
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "iqwa-kasra-vs-damma",
+      "lines": [
+        "صدر 1",
+        "هذا كَلَامُ",
+        "صدر 2",
+        "هذا سَلَامُ",
+        "صدر 3",
+        "هذا غَرَامِ",
+        "صدر 4",
+        "هذا مُقَامُ"
+      ],
+      "endings": [
+        "كَلَامُ",
+        "سَلَامُ",
+        "غَرَامِ",
+        "مُقَامُ"
+      ],
+      "expected": {
+        "status": "ok",
+        "rawi": "م",
+        "consistent": true,
+        "multiple": false,
+        "authoritative": true,
+        "ratio": 1.0,
+        "bayt_count": 4,
+        "defects": {
+          "iqwa": [
+            2
+          ]
+        },
+        "reference_source": "first_valid_ending",
+        "reference_bayt": 0,
+        "most_frequent_rawi": "م",
+        "usable_for_filtering": true
+      },
+      "word_level": [
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "damma"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "damma"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "kasra"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "damma"
+        }
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "israf-fatha-vs-damma",
+      "lines": [
+        "صدر 1",
+        "هذا كَلَامُ",
+        "صدر 2",
+        "هذا سَلَامُ",
+        "صدر 3",
+        "هذا غَرَامَ",
+        "صدر 4",
+        "هذا مُقَامُ"
+      ],
+      "endings": [
+        "كَلَامُ",
+        "سَلَامُ",
+        "غَرَامَ",
+        "مُقَامُ"
+      ],
+      "expected": {
+        "status": "ok",
+        "rawi": "م",
+        "consistent": true,
+        "multiple": false,
+        "authoritative": true,
+        "ratio": 1.0,
+        "bayt_count": 4,
+        "defects": {
+          "israf": [
+            2
+          ]
+        },
+        "reference_source": "first_valid_ending",
+        "reference_bayt": 0,
+        "most_frequent_rawi": "م",
+        "usable_for_filtering": true
+      },
+      "word_level": [
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "damma"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "damma"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "fatha"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "damma"
+        }
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "pausal-sukun-not-a-defect",
+      "lines": [
+        "صدر 1",
+        "هذا كَلَامُ",
+        "صدر 2",
+        "هذا سَلَامُ",
+        "صدر 3",
+        "هذا غَرَامْ",
+        "صدر 4",
+        "هذا مُقَامُ"
+      ],
+      "endings": [
+        "كَلَامُ",
+        "سَلَامُ",
+        "غَرَامْ",
+        "مُقَامُ"
+      ],
+      "expected": {
+        "status": "ok",
+        "rawi": "م",
+        "consistent": true,
+        "multiple": false,
+        "authoritative": true,
+        "ratio": 1.0,
+        "bayt_count": 4,
+        "defects": {},
+        "reference_source": "first_valid_ending",
+        "reference_bayt": 0,
+        "most_frequent_rawi": "م",
+        "usable_for_filtering": true
+      },
+      "word_level": [
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "damma"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "damma"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "damma"
+        }
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "ita-repeated-word",
+      "lines": [
+        "صدر 1",
+        "هذا كِتَابْ",
+        "صدر 2",
+        "هذا حِسَابْ",
+        "صدر 3",
+        "هذا كِتَابْ",
+        "صدر 4",
+        "هذا عَذَابْ"
+      ],
+      "endings": [
+        "كِتَابْ",
+        "حِسَابْ",
+        "كِتَابْ",
+        "عَذَابْ"
+      ],
+      "expected": {
+        "status": "ok",
+        "rawi": "ب",
+        "consistent": true,
+        "multiple": false,
+        "authoritative": true,
+        "ratio": 1.0,
+        "bayt_count": 4,
+        "defects": {
+          "ita": [
+            2
+          ]
+        },
+        "reference_source": "first_valid_ending",
+        "reference_bayt": 0,
+        "most_frequent_rawi": "ب",
+        "usable_for_filtering": true
+      },
+      "word_level": [
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        }
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "ita-distance-seven-not-flagged",
+      "lines": [
+        "صدر 1",
+        "هذا كِتَابْ",
+        "صدر 2",
+        "هذا حِسَابْ",
+        "صدر 3",
+        "هذا عَذَابْ",
+        "صدر 4",
+        "هذا سَرَابْ",
+        "صدر 5",
+        "هذا ثَوَابْ",
+        "صدر 6",
+        "هذا جَوَابْ",
+        "صدر 7",
+        "هذا غُرَابْ",
+        "صدر 8",
+        "هذا كِتَابْ"
+      ],
+      "endings": [
+        "كِتَابْ",
+        "حِسَابْ",
+        "عَذَابْ",
+        "سَرَابْ",
+        "ثَوَابْ",
+        "جَوَابْ",
+        "غُرَابْ",
+        "كِتَابْ"
+      ],
+      "expected": {
+        "status": "ok",
+        "rawi": "ب",
+        "consistent": true,
+        "multiple": false,
+        "authoritative": true,
+        "ratio": 1.0,
+        "bayt_count": 8,
+        "defects": {},
+        "reference_source": "first_valid_ending",
+        "reference_bayt": 0,
+        "most_frequent_rawi": "ب",
+        "usable_for_filtering": true
+      },
+      "word_level": [
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        }
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "boundary-ratio-exactly-0.8",
+      "lines": [
+        "صدر 1",
+        "هذا كِتَابْ",
+        "صدر 2",
+        "هذا حِسَابْ",
+        "صدر 3",
+        "هذا عَذَابْ",
+        "صدر 4",
+        "هذا سَرَابْ",
+        "صدر 5",
+        "هذا سَلَامْ"
+      ],
+      "endings": [
+        "كِتَابْ",
+        "حِسَابْ",
+        "عَذَابْ",
+        "سَرَابْ",
+        "سَلَامْ"
+      ],
+      "expected": {
+        "status": "review",
+        "rawi": "ب",
+        "consistent": false,
+        "multiple": true,
+        "authoritative": true,
+        "ratio": 0.8,
+        "bayt_count": 5,
+        "defects": {
+          "rawi_mismatch": [
+            4
+          ]
+        },
+        "reference_source": "first_valid_ending",
+        "reference_bayt": 0,
+        "most_frequent_rawi": "ب",
+        "usable_for_filtering": true
+      },
+      "word_level": [
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "ب",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        },
+        {
+          "rawi": "م",
+          "radf": "ا",
+          "wasl": null,
+          "mujra": "sukun"
+        }
+      ],
+      "review_status": "unreviewed"
+    }
+  ]
+}

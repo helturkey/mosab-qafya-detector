@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Mosab\QafyaDetector\Classification;
 
 use Mosab\QafyaDetector\Enums\RawiEligibilityReason;
+use Mosab\QafyaDetector\Text\PhoneticText;
 
 /**
  * Context-aware policy for whether a candidate letter is suitable as rawi.
@@ -128,6 +129,28 @@ final class RawiEligibilityPolicy
          * Unvocalized final ن should remain a normal rawi by default.
          */
         if (preg_match('/^[يتأ][\x{0621}-\x{063A}\x{0641}-\x{064A}]{2,}ن$/u', $normalized) !== 1) {
+            return false;
+        }
+
+        /*
+         * A long vowel directly before the nūn means the nūn belongs to the
+         * word or to a plural/dual suffix, not to the feminine-plural verb
+         * suffix: أَحْزَانَ / أَوْطَانَ / أَلْوَانَ / تِبْيَانَ / يَعْلَمُونَ.
+         * Those nūns are ordinary rawis (with a radf), so they must not be
+         * treated as extraneous wasl.
+         */
+        $beforeNoon = $chars[count($chars) - 2] ?? null;
+        if (in_array($beforeNoon, ['ا', 'أ', 'إ', 'آ', 'ى', 'و', 'ي'], true)) {
+            return false;
+        }
+
+        /*
+         * Nūn al-niswa attaches to a sākin lām (يَكْتُبْنَ). An explicit short
+         * vowel on the preceding letter (أَحْسَنَ / أَمْكَنَ) shows a verb root
+         * or noun, so the final nūn stays a normal rawi.
+         */
+        $beforeHaraka = (new PhoneticText($word))->harakaAtLetterIndex(count($chars) - 2);
+        if (in_array($beforeHaraka['class'], ['fatha', 'damma', 'kasra'], true)) {
             return false;
         }
 
