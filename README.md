@@ -34,6 +34,17 @@ $result->confidenceLevel();
 $result->warnings();
 ```
 
+`patternSurface()` contains only the qafya letters (taasis, dakhiil, radf, rawi, wasl, khurooj). `qafyaPattern()` adds the explicitly moving letter before a plain rawi so the shared sound can be compared:
+
+```php
+$result = $detector->extract('ذَهَبْ');
+$result->rawi();           // ب
+$result->patternSurface(); // ب
+$result->qafyaPattern();   // هب
+```
+
+It is word-level (last word only) and equals `patternSurface()` when no letter can be added. On a poem analysis, `qafyaPattern()` is still the dominant pattern.
+
 ## Analyze a poem
 
 Pass the poem as a list of hemistichs or as a string that the line splitter can parse. By default, only the second hemistich (*ʿajuz*) of each complete bayt is used for poem-level clustering. Set `analyze_sadr` to `true` to analyze both halves.

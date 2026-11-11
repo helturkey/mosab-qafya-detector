@@ -17,7 +17,6 @@ use Mosab\QafyaDetector\Enums\QafyaStatus;
 use Mosab\QafyaDetector\Enums\QafyaSubtype;
 use Mosab\QafyaDetector\Support\ConfidenceCalibrationProfile;
 use Mosab\QafyaDetector\Support\QafyaOptions;
-use Mosab\QafyaDetector\Support\QafyaSurfaceFormatter;
 use Mosab\QafyaDetector\Text\QafyaSegmentExtractor;
 use Throwable;
 
@@ -57,24 +56,15 @@ final class WordQafyaDetector implements WordQafyaDetectorContract
         $name = $this->names->classify($segment['moving_count_between_sakins']);
         $categoryEnum = QafyaCategory::tryFrom($category);
         $subtypeEnum = QafyaSubtype::tryFrom($subtype);
-        $signatures = $this->signatures->build($components, $motions);
-        $patternSurface = is_string($componentData['surface_pattern'] ?? null)
-            ? $componentData['surface_pattern']
-            : $signatures['visual'];
-        $rawiComponent = is_array($components['rawi'] ?? null) ? $components['rawi'] : [];
-        $radfComponent = is_array($components['radf'] ?? null) ? $components['radf'] : [];
-        $waslComponent = is_array($components['wasl'] ?? null) ? $components['wasl'] : [];
-        $rawiLetter = is_string($rawiComponent['letter'] ?? null) ? $rawiComponent['letter'] : null;
-        $radfLetter = is_string($radfComponent['letter'] ?? null) ? $radfComponent['letter'] : null;
-        $waslLetter = is_string($waslComponent['letter'] ?? null) ? $waslComponent['letter'] : null;
         $surfaceWord = is_string($componentData['word'] ?? null) ? $componentData['word'] : $ending;
-        $patternSurface = QafyaSurfaceFormatter::preserveTaaMarbuta(
-            $patternSurface,
-            $surfaceWord,
-            $rawiLetter,
-            $radfLetter,
-            $waslLetter,
-        );
+        $signatures = $this->signatures->build($components, $motions);
+        $display = $this->signatures->display($components, [
+            'word' => $surfaceWord,
+            'rawi_index' => $componentData['rawi_index'] ?? null,
+            'surface_pattern' => $componentData['surface_pattern'] ?? null,
+        ]);
+        $patternSurface = $display['surface'];
+        $tail = $display['tail'];
         $signatures['visual'] = $patternSurface;
         $pattern = [
             'surface' => $patternSurface,
@@ -161,6 +151,7 @@ final class WordQafyaDetector implements WordQafyaDetectorContract
                 'segment' => $segment,
                 'boundary' => $segment,
                 'pattern' => $pattern,
+                'tail' => $tail,
                 'components' => $components,
                 'motions' => $motions,
             ],

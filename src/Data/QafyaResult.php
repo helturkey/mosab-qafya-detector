@@ -162,9 +162,17 @@ final readonly class QafyaResult implements JsonSerializable
         return $this->pattern->surface;
     }
 
+    /**
+     * Word-level qafya pattern for display: the pattern surface plus the explicitly
+     * moving letter before a plain rawi (ذَهَبْ => هب). It equals patternSurface()
+     * whenever no tail letter can be added. patternSurface() itself is unchanged.
+     */
     public function qafyaPattern(): ?string
     {
-        return $this->patternSurface();
+        $tail = $this->qafya['tail'] ?? null;
+        $surface = is_array($tail) ? ($tail['surface'] ?? null) : null;
+
+        return is_string($surface) && $surface !== '' ? $surface : $this->patternSurface();
     }
 
     public function qafyaSegment(): ?string

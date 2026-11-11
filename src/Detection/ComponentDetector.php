@@ -299,6 +299,9 @@ final class ComponentDetector
             'components' => $components,
             'motions' => $motions,
             'surface_pattern' => $surfacePattern,
+            // Ordinal of the rawi in the normalized letters of 'word'; used by
+            // QafyaSignatureBuilder to look at the letter before the rawi.
+            'rawi_index' => $rawiIndex,
             // A heuristic evidence score is not a calibrated probability.
             'confidence' => [
                 'score' => $score,

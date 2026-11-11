@@ -1,6 +1,13 @@
 # Changelog
 
-## v0.3.0
+## v1.1.0
+
+### Added
+- **Shared tail (word level):** `qafya.tail` and `QafyaResult::qafyaPattern()` return the visible pattern plus the explicitly moving letter before the rawi when the ending has no taasis, dakhiil or radf (`ذَهَبْ` and `اللَّهَبْ` both give `هب`). `rawi`, `pattern.surface`, signatures and defects are unchanged. No letter is added for undiacritized text, a previous letter with sukun, a custom surface pattern, or endings with radf/taasis/dakhiil. It looks at the last word only; poem-level rewriting of the public pattern does not recompute it.
+- `ComponentDetector::detect()` also returns `rawi_index`.
+- Tests: `RhymeTailBuilderTest` and `RhymeTailTest`.
+
+## v1.0.0
 
 ### Fixed
 - **Final nūn:** vowelled broken plurals and plural endings (`أَحْزَانَ`, `أَوْطَانَ`, `أَلْوَانَ`, `أَشْجَانَ`, `تِبْيَانَ`, `يَعْلَمُونَ`) and perfect verbs with a vowelled root letter (`أَحْسَنَ`) were treated as feminine-plural nūn al-niswa, which made the rawi the letter before the nūn and could split an `-ān` poem. The nūn now stays the rawi unless the letter before it is a non-vowelled, non-long-vowel consonant (`يَكْتُبْنَ` still resolves to rawi `ب`, wasl `ن`).
